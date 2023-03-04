@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e53709e1-7739-4469-a09a-2a5a54bd912f" name="Changes" comment="" />
+    <list default="true" id="e53709e1-7739-4469-a09a-2a5a54bd912f" name="Changes" comment="prueba">
+      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/TipoToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/TipoToken.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +35,12 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -64,11 +72,23 @@
       <option name="presentableId" value="Default" />
       <updated>1677892699299</updated>
       <workItem from="1677892700611" duration="177000" />
-      <workItem from="1677954349006" duration="4249000" />
+      <workItem from="1677954349006" duration="4846000" />
     </task>
+    <task id="LOCAL-00001" summary="prueba">
+      <created>1677963789618</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677963789618</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="prueba" />
+    <option name="LAST_COMMIT_MESSAGE" value="prueba" />
   </component>
 </project>
