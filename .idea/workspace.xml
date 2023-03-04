@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e53709e1-7739-4469-a09a-2a5a54bd912f" name="Changes" comment="prueba">
-      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/TipoToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/TipoToken.java" afterDir="false" />
+    <list default="true" id="e53709e1-7739-4469-a09a-2a5a54bd912f" name="Changes" comment="Simbolos">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +34,13 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "ChangesTree.GroupingKeys": [
-      "directory",
-      "module"
+      "module",
+      "directory"
     ]
   }
 }]]></component>
@@ -72,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677892699299</updated>
       <workItem from="1677892700611" duration="177000" />
-      <workItem from="1677954349006" duration="4846000" />
+      <workItem from="1677954349006" duration="6007000" />
     </task>
     <task id="LOCAL-00001" summary="prueba">
       <created>1677963789618</created>
@@ -81,14 +82,40 @@
       <option name="project" value="LOCAL" />
       <updated>1677963789618</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Simbolos">
+      <created>1677964589255</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677964589255</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Simbolos">
+      <created>1677964870209</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677964870209</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="prueba" />
-    <option name="LAST_COMMIT_MESSAGE" value="prueba" />
+    <MESSAGE value="Simbolos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simbolos" />
   </component>
 </project>
