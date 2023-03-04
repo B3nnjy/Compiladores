@@ -14,7 +14,41 @@ public enum TipoToken {
 
     //Simbolos del lenguaje
 
+    PAREN_IZQ, PAREN_DER, LLAVE_IZQ, LLAVE_DER, COMA, PUNTO, PUTO_COMA,MENOS, MAS,
+    ASTERISCO, DIAGONAL, NO, DIFERENTE, ASIGNACION, COMPARACION, MENOR, MENOR_EQ,
+    MAYOR, MAYOR_EQ, COMENTARIOS, COMENTARIOS_MULTI,
 
     // Final de cadena
     EOF
 }
+
+
+/*
+Signos o símbolos del lenguaje:
+(
+)
+{
+}
+,
+.
+;
+-
++
+*
+/
+!
+!=
+=
+==
+<
+<=
+>
+>=
+// -> comentarios (no se genera token)
+/* ... * / -> comentarios (no se genera token)
+Identificador,
+Cadena
+Numero
+Cada palabra reservada tiene su nombre de token
+
+ */
