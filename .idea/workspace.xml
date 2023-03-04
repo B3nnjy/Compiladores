@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e53709e1-7739-4469-a09a-2a5a54bd912f" name="Changes" comment="Simbolos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/TipoToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/TipoToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiladores/mx/ipn/escom/compiladores/Scanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiladores/mx/ipn/escom/compiladores/Scanner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compiladores/mx/ipn/escom/compiladores/TipoToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiladores/mx/ipn/escom/compiladores/TipoToken.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +18,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4744528d-8235-436b-a98d-c568ed156d8e" />
+        <option name="url" value="https://github.com/AlanDSigala/Compiladores.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -73,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1677892699299</updated>
       <workItem from="1677892700611" duration="177000" />
-      <workItem from="1677954349006" duration="6007000" />
+      <workItem from="1677954349006" duration="9005000" />
     </task>
     <task id="LOCAL-00001" summary="prueba">
       <created>1677963789618</created>
@@ -96,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677964870209</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Simbolos">
+      <created>1677965714526</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677965714526</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
