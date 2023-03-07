@@ -40,14 +40,54 @@ public class Scanner {
 
     List<Token> scanTokens(){
         //Aquí va el corazón del scanner.
+        for (int i = 0; i < source.length(); i++) {
 
-        switch (source){
+            char vistazo= source.charAt(i);
 
-            case ("("):
-                tokens.add(new Token(TipoToken.LLAVE_IZQ, "", null, linea));
+            if (vistazo == ' ' || vistazo == '\t'){
 
+            } else if (vistazo == '\n') {
+                linea++;
+            }
 
+            /*switch (vistazo){
+
+                case ('('):
+                    tokens.add(new Token(TipoToken.PAREN_IZQ, "(", null, linea));
+                    break;
+                case (')'):
+                    tokens.add(new Token(TipoToken.PAREN_DER, ")",null, linea));
+                    break;
+
+                case ('{'):
+                    tokens.add(new Token(TipoToken.LLAVE_IZQ, "{", null, linea));
+                    break;
+
+                case ('}'):
+                    tokens.add(new Token(TipoToken.LLAVE_DER, "}", null, linea));
+                    break;
+
+                case (','):
+                    tokens.add(new Token(TipoToken.COMA,",",null, linea));
+                    break;
+
+                case ('.'):
+                    tokens.add(new Token(TipoToken.PUNTO,".",null, linea));
+                    break;
+
+                case (';'):
+                    tokens.add(new Token(TipoToken.PUTO_COMA,";",null, linea));
+                    break;
+
+                case ('-'):
+                    tokens.add(new Token(TipoToken.MENOS,"-",null, linea));
+
+                case ("+"):
+                    tokens.add(new Token(TipoToken.MAS,"+",null, linea));
+            }*/
         }
+
+
 
         /*
         Analizar el texto de entrada para extraer todos los tokens
