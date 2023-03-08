@@ -41,12 +41,10 @@ public class Scanner {
     List<Token> scanTokens(){
 
         int estado = 0;
-
         //Aquí va el corazón del scanner.
         for (int i = 0; i < source.length(); i++) {
             char vistazo= source.charAt(i);
             int iLexema = 0;
-
 
 
             switch(estado){
@@ -58,8 +56,9 @@ public class Scanner {
                     }
 
                     // Numeros
-                    if(vistazo == '1' || vistazo == '2'){
-                        estado = 13;
+                    if(vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
+                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
+                        estado =0;
                         iLexema = i;
                     }
 
