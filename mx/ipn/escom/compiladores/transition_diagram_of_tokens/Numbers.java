@@ -1,11 +1,8 @@
 package mx.ipn.escom.compiladores.transition_diagram_of_tokens;
 
-import mx.ipn.escom.compiladores.TipoToken;
-import mx.ipn.escom.compiladores.Token;
+public class Numbers {
 
-public class UnsignedNumbers {
-
-  private static boolean isDigit(char vistazo){
+  public static boolean isDigit(char vistazo){
     if(vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
         || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
       return true;
@@ -14,7 +11,7 @@ public class UnsignedNumbers {
     }
   }
 
-  public static int UnsignedNumbersImpl(int estado, char vistazo){
+  public static int CompIfIsNumber(int estado, char vistazo){
     switch(estado){
       case 0:
         // Numeros

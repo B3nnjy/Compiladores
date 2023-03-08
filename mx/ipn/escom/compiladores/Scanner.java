@@ -1,6 +1,6 @@
 package mx.ipn.escom.compiladores;
 
-import mx.ipn.escom.compiladores.transition_diagram_of_tokens.UnsignedNumbers;
+import mx.ipn.escom.compiladores.transition_diagram_of_tokens.Numbers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +36,7 @@ public class Scanner {
         palabrasReservadas.put("mientras", TipoToken.MIENTRAS);
     }
 
+
     Scanner(String source){
         this.source = source;
     }
@@ -49,12 +50,11 @@ public class Scanner {
         for (int i = 0; i < source.length(); i++) {
             char vistazo = source.charAt(i);
 
-
             fLexema = i;
 
             //System.out.println("flag " + estado);
 
-            estado = UnsignedNumbers.UnsignedNumbersImpl(estado, vistazo);
+            estado = Numbers.CompIfIsNumber(estado, vistazo);
 
             switch (estado){
                 case 0:
@@ -89,7 +89,6 @@ public class Scanner {
                     estado = 0;
                     break;
             }
-
 
             if (vistazo == ' ' || vistazo == '\t'){
 
