@@ -39,10 +39,44 @@ public class Scanner {
     }
 
     List<Token> scanTokens(){
+
+        int estado = 0;
+
         //Aquí va el corazón del scanner.
         for (int i = 0; i < source.length(); i++) {
-
             char vistazo= source.charAt(i);
+            int iLexema = 0;
+
+
+
+            switch(estado){
+                case 0:
+                    if (vistazo == ' ' || vistazo == '\t'){
+
+                    } else if (vistazo == '\n') {
+                        linea++;
+                    }
+
+                    // Numeros
+                    if(vistazo == '1' || vistazo == '2'){
+                        estado = 13;
+                        iLexema = i;
+                    }
+
+
+                    break;
+
+                case 13:
+                    if(vistazo == '1' || vistazo == '2'){
+                        estado = 13;
+                    }
+                    else if(vistazo ==  '.'){
+                        estado =  14;
+                    }
+
+            }
+
+
 
             if (vistazo == ' ' || vistazo == '\t'){
 
