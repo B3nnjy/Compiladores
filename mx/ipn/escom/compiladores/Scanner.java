@@ -1,5 +1,7 @@
 package mx.ipn.escom.compiladores;
 
+import mx.ipn.escom.compiladores.transition_diagram_of_tokens.UnsignedNumbers;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,42 +41,54 @@ public class Scanner {
     }
 
     List<Token> scanTokens(){
-
         int estado = 0;
+        int iLexema = 0;
+        int fLexema = 0;
+        String lexema;
         //Aquí va el corazón del scanner.
         for (int i = 0; i < source.length(); i++) {
-            char vistazo= source.charAt(i);
-            int iLexema = 0;
+            char vistazo = source.charAt(i);
 
 
-            switch(estado){
+            fLexema = i;
+
+            //System.out.println("flag " + estado);
+
+            estado = UnsignedNumbers.UnsignedNumbersImpl(estado, vistazo);
+
+            switch (estado){
                 case 0:
                     if (vistazo == ' ' || vistazo == '\t'){
-
+                        estado = 0;
                     } else if (vistazo == '\n') {
                         linea++;
                     }
-
-                    // Numeros
-                    if(vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
-                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
-                        estado =0;
-                        iLexema = i;
-                    }
-
-
                     break;
-
-                case 13:
-                    if(vistazo == '1' || vistazo == '2'){
-                        estado = 13;
-                    }
-                    else if(vistazo ==  '.'){
-                        estado =  14;
-                    }
-
+                case 19:
+                    lexema = source.substring(iLexema, fLexema);
+                    int E = lexema.indexOf('E');
+                    String entero = lexema.substring(iLexema, E);
+                    String potencia = lexema.substring(E+1);
+                    System.out.println(entero + potencia);
+                    float enteroP = Float.parseFloat(entero);
+                    int pow = Integer.parseInt(potencia);
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, enteroP*(Math.pow(10, pow)), linea));
+                    iLexema = fLexema;
+                    estado = 0;
+                    break;
+                case 20:
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, Integer.parseInt(lexema), linea));
+                    iLexema = fLexema;
+                    estado = 0;
+                    break;
+                case 21:
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, Float.parseFloat(lexema), linea));
+                    iLexema = fLexema;
+                    estado = 0;
+                    break;
             }
-
 
 
             if (vistazo == ' ' || vistazo == '\t'){
