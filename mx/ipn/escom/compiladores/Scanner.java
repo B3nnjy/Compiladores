@@ -34,6 +34,7 @@ public class Scanner {
         palabrasReservadas.put("mientras", TipoToken.MIENTRAS);
     }
 
+
     Scanner(String source){
         this.source = source;
     }
@@ -45,6 +46,7 @@ public class Scanner {
         for (int i = 0; i < source.length(); i++) {
             char vistazo= source.charAt(i);
             int iLexema = 0;
+            int fLexema = 0;
 
 
             switch(estado){
@@ -56,32 +58,77 @@ public class Scanner {
                     }
 
                     // Numeros
-                    if(vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
+                    if(vistazo == '1' || vistazo == '2' || vistazo == '3' || vistazo =='4' || vistazo == '5'
                             || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
-                        estado =0;
+                        estado =13;
                         iLexema = i;
                     }
-
-
                     break;
 
                 case 13:
-                    if(vistazo == '1' || vistazo == '2'){
+                    if(vistazo == '1' || vistazo == '2' || vistazo == '3' || vistazo =='4' || vistazo == '5'
+                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
                         estado = 13;
-                    }
-                    else if(vistazo ==  '.'){
+                    }else if(vistazo ==  '.'){
                         estado =  14;
+                    } else if (/*vistazo contiene una letra*/) {
+                    //recolectar letras o dígitos en un búfer b;
+                    //s = cadena formada a partir de los caracteres en b;
+                    //w = token devuelto por palabras.get(s);
+                    if (/*w no es null*/){
+
+                        return /*w*/;
+                    }else {
+
+
                     }
 
+
+                    }
+                    break;
+
+                case 14:
+                    if(vistazo == '1' || vistazo == '2' || vistazo == '3' || vistazo =='4' || vistazo == '5'
+                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
+                        estado = 15;
+                    }
+                    break;
+
+                case 15:
+                    if(vistazo == '1' || vistazo == '2' || vistazo == '3' || vistazo =='4' || vistazo == '5'
+                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
+                        estado = 15;
+                    } else if (vistazo == 'E') {
+                        estado = 16;
+                    }
+                    break;
+
+                case 16:
+                    if(vistazo == '1' || vistazo == '2' || vistazo == '3' || vistazo =='4' || vistazo == '5'
+                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
+                        estado = 18;
+                    } else if (vistazo == '+' || vistazo == '-') {
+                        estado = 17;
+                    }
+                    break;
+
+                case 17:
+                    if(vistazo == '1' || vistazo == '2' || vistazo == '3' || vistazo =='4' || vistazo == '5'
+                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
+                        estado = 18;
+                    }
+                    break;
+
+                case 18:
+                    if(vistazo == '1' || vistazo == '2' || vistazo == '3' || vistazo =='4' || vistazo == '5'
+                            || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
+                        estado = 18;
+                    } else if (vistazo == '+' || vistazo == '-') {
+                        estado = 17;
+                    }
+                    break;
             }
 
-
-
-            if (vistazo == ' ' || vistazo == '\t'){
-
-            } else if (vistazo == '\n') {
-                linea++;
-            }
 
             /*switch (vistazo){
 
