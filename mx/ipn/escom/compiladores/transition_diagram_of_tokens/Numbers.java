@@ -4,7 +4,7 @@ public class Numbers {
 
   public static boolean isDigit(char vistazo){
     //Motodo para comprobar si es un digito del 1 al 9
-    if(vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
+    if(vistazo == '0' || vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
         || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
       return true;
     }else{

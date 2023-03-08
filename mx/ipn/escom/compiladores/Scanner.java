@@ -1,5 +1,6 @@
 package mx.ipn.escom.compiladores;
 
+import mx.ipn.escom.compiladores.transition_diagram_of_tokens.Letra;
 import mx.ipn.escom.compiladores.transition_diagram_of_tokens.Numbers;
 
 import java.util.ArrayList;
@@ -65,12 +66,19 @@ public class Scanner {
                     }
 
                     if (Numbers.isDigit(vistazo)){
-                      //Entra al diagrama de trnsicion para los numeros sin signo
+                      //Entra al diagrama de transicion para los numeros sin signo
                       estado = 12;
                       estado = Numbers.CompIfIsNumber(estado, vistazo);
                     }
 
+                    if(Letra.isLetter(vistazo)){
+                        //Entra al diagrama de transicion para los identificadores y palabras reservadas
+                        estado = 9;
+                        estado = Letra.CompIfIsLetter(estado, vistazo);
+                    }
                     break;
+
+
                     //Estados finales
                 case 19:
                     lexema = source.substring(iLexema, fLexema);
@@ -96,13 +104,13 @@ public class Scanner {
                     iLexema = fLexema;
                     estado = 0;
                     break;
+
+
+                case 11:
+
+
             }
 
-            if (vistazo == ' ' || vistazo == '\t'){
-
-            } else if (vistazo == '\n') {
-                linea++;
-            }
 
             /*switch (vistazo){
 
