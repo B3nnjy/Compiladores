@@ -3,6 +3,7 @@ package mx.ipn.escom.compiladores.transition_diagram_of_tokens;
 public class Numbers {
 
   public static boolean isDigit(char vistazo){
+    //Motodo para comprobar si es un digito del 1 al 9
     if(vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
         || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
       return true;
@@ -12,15 +13,21 @@ public class Numbers {
   }
 
   public static int CompIfIsNumber(int estado, char vistazo){
+    if (estado < 12){
+      //Si no es el estado 12 siplemente sale del metodo
+      return estado;
+    }
+
+    //Comprobacion del estado al que tiene que ir
+    // Numeros
     switch(estado){
-      case 0:
-        // Numeros
+      case 12:
         if(isDigit(vistazo)){
           estado = 13;
         }
         break;
       case 13:
-        if(isDigit(vistazo)){
+        if(isDigit(vistazo) || vistazo == '0'){
           estado = 13;
           break;
         }else{
@@ -68,6 +75,7 @@ public class Numbers {
         break;
 
     }
+    //Retorna el estado final
     return estado;
   }
 }

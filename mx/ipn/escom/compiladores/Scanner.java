@@ -63,7 +63,15 @@ public class Scanner {
                     } else if (vistazo == '\n') {
                         linea++;
                     }
+
+                    if (Numbers.isDigit(vistazo)){
+                      //Entra al diagrama de trnsicion para los numeros sin signo
+                      estado = 12;
+                      estado = Numbers.CompIfIsNumber(estado, vistazo);
+                    }
+
                     break;
+                    //Estados finales
                 case 19:
                     lexema = source.substring(iLexema, fLexema);
                     int E = lexema.indexOf('E');

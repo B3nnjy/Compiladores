@@ -9,14 +9,14 @@ public class Digito {
         this.entrada = entrada;
     }
 
-    public isdigit (char x){
+    public void isdigit (char x){
 
         Pattern pattern = Pattern.compile("[0-9]");
-        Matcher matcher = pattern.matcher(entrada);
+        //Matcher matcher = pattern.matcher(this.entrada);
 
-        while (matcher.find()) {
+        /*while (matcher.find()) {
 
-        }
+        }*/
 
         return;
 
