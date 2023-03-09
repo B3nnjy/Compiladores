@@ -53,9 +53,10 @@ public class Scanner {
 
             fLexema = i;
 
-            //System.out.println("flag " + estado);
+            System.out.println("flag " + estado);
 
             estado = Numbers.CompIfIsNumber(estado, vistazo);
+            estado = Letra.CompIfIsLetter(estado, vistazo);
 
             switch (estado){
                 case 0:
@@ -91,22 +92,40 @@ public class Scanner {
                     tokens.add(new Token(TipoToken.NUMERO, lexema, enteroP*(Math.pow(10, pow)), linea));
                     iLexema = fLexema;
                     estado = 0;
+                    i--;
                     break;
                 case 20:
                     lexema = source.substring(iLexema, fLexema);
                     tokens.add(new Token(TipoToken.NUMERO, lexema, Integer.parseInt(lexema), linea));
                     iLexema = fLexema;
                     estado = 0;
+                    i--;
                     break;
                 case 21:
                     lexema = source.substring(iLexema, fLexema);
                     tokens.add(new Token(TipoToken.NUMERO, lexema, Float.parseFloat(lexema), linea));
                     iLexema = fLexema;
                     estado = 0;
+                    i--;
                     break;
 
 
                 case 11:
+                    lexema = source.substring(iLexema, fLexema);
+                    TipoToken tt = palabrasReservadas.get(lexema);
+                    if(tt == null) {
+                        //Crear el token tipo identificador
+                        tokens.add( new Token(TipoToken.IDENTIFICADOR, lexema, null, linea) );
+                    }
+                    else{
+                        tokens.add( new Token(tt, lexema, null, linea) );
+                    }
+
+                    estado = 0;
+                    iLexema = fLexema;
+                    i--;
+                    break;
+
 
 
             }

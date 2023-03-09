@@ -6,7 +6,7 @@ public class Letra {
 
     public static boolean isLetter(char vistazo){
         //Motodo para comprobar si es una letra de la 'a' a la 'z' o de la 'A' a la 'Z'
-        if((vistazo >= 'a' && vistazo <= 'z') || (vistazo >= 'A' && vistazo <= 'Z')){
+        if(Character.isLetter(vistazo)){
             return true;
         }else{
             return false;
@@ -31,7 +31,6 @@ public class Letra {
             case 10:
                 if(isDigit(vistazo) || isLetter(vistazo)){
                     estado = 10;
-                    break;
                 }else{
                     estado = 11;
                 }

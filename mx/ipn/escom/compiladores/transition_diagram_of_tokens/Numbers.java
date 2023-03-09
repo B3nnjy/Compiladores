@@ -27,7 +27,7 @@ public class Numbers {
         }
         break;
       case 13:
-        if(isDigit(vistazo) || vistazo == '0'){
+        if(isDigit(vistazo)){
           estado = 13;
           break;
         }else{
@@ -41,12 +41,12 @@ public class Numbers {
         }
         break;
       case 14:
-        if(isDigit(vistazo) || vistazo == '0'){
+        if(isDigit(vistazo)){
           estado = 15;
         }
         break;
       case 15:
-        if(isDigit(vistazo) || vistazo == '0'){
+        if(isDigit(vistazo)){
           estado = 15;
         }else if(vistazo == 'E'){
           estado = 16;
