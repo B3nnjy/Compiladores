@@ -41,7 +41,7 @@ public class Interprete {
             System.out.print(">>> ");
             String linea = reader.readLine();
             if(linea == null) break; // Presionar Ctrl + D
-            ejecutar(linea);
+            ejecutar(linea + '\0');
             existenErrores = false;
         }
     }
@@ -71,5 +71,4 @@ public class Interprete {
         );
         existenErrores = true;
     }
-
 }

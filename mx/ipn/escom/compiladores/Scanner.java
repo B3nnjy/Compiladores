@@ -1,8 +1,8 @@
 package mx.ipn.escom.compiladores;
 
-import mx.ipn.escom.compiladores.transition_diagram_of_tokens.Letra;
-import mx.ipn.escom.compiladores.transition_diagram_of_tokens.Numbers;
-import mx.ipn.escom.compiladores.transition_diagram_of_tokens.OpeRelacional;
+import mx.ipn.escom.compiladores.automatas.Letra;
+import mx.ipn.escom.compiladores.automatas.Numbers;
+import mx.ipn.escom.compiladores.automatas.OpeRelacional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,24 +46,24 @@ public class Scanner {
     List<Token> scanTokens(){
         int estado = 0;
         int iLexema = 0;
-        int fLexema = 0;
+        int fLexema;
         String lexema;
+
         //Aquí va el corazón del scanner.
         for (int i = 0; i < source.length(); i++) {
             char vistazo = source.charAt(i);
-
             fLexema = i;
-
-            System.out.println("flag " + estado);
-
             estado = Numbers.CompIfIsNumber(estado, vistazo);
             estado = Letra.CompIfIsLetter(estado, vistazo);
             estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
 
+            //System.out.println("flag " + estado);
+
             switch (estado){
                 case 0:
                     if (vistazo == ' ' || vistazo == '\t'){
-                        estado = 0;
+                        iLexema = fLexema + 1;
+                        continue;
                     } else if (vistazo == '\n') {
                         linea++;
                     }
@@ -86,15 +86,12 @@ public class Scanner {
                         estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
                     }
                     break;
-
-
                     //Estados finales
                 case 19:
                     lexema = source.substring(iLexema, fLexema);
                     int E = lexema.indexOf('E');
-                    String entero = lexema.substring(iLexema, E);
+                    String entero = lexema.substring(0, E);
                     String potencia = lexema.substring(E+1);
-                    System.out.println(entero + potencia);
                     float enteroP = Float.parseFloat(entero);
                     int pow = Integer.parseInt(potencia);
                     tokens.add(new Token(TipoToken.NUMERO, lexema, enteroP*(Math.pow(10, pow)), linea));
@@ -116,8 +113,6 @@ public class Scanner {
                     estado = 0;
                     i--;
                     break;
-
-
                 case 11:
                     lexema = source.substring(iLexema, fLexema);
                     TipoToken tt = palabrasReservadas.get(lexema);
@@ -128,44 +123,39 @@ public class Scanner {
                     else{
                         tokens.add( new Token(tt, lexema, null, linea) );
                     }
-
                     estado = 0;
                     iLexema = fLexema;
                     i--;
                     break;
-
                 case 2:
                     lexema = source.substring(iLexema, fLexema);
                     tokens.add(new Token(TipoToken.MENOR_EQ, lexema, null, linea));
                     estado = 0;
                     iLexema = fLexema;
                     break;
-
                 case 3:
-                    lexema = source.substring(iLexema,fLexema);
+                    lexema = source.substring(iLexema, fLexema);
                     tokens.add(new Token(TipoToken.NOT_EQ, lexema, null, linea));
-                    estado = 0; iLexema = fLexema;
+                    estado = 0;
+                    iLexema = fLexema;
                     break;
-
                 case 4:
                     lexema = source.substring(iLexema, fLexema);
                     tokens.add(new Token(TipoToken.MENOR, lexema, null, linea));
-                    estado = 0; iLexema =fLexema;
+                    estado = 0;
+                    iLexema =fLexema;
                     i--;
                     break;
-
                 case 5:
-                    lexema = source.substring(iLexema, fLexema);
+                    lexema = source.substring(iLexema, fLexema + 1);
                     tokens.add(new Token(TipoToken.IGUAL, lexema, null , linea));
                     estado = 0; iLexema = fLexema;
                     break;
-
                 case 7:
                     lexema = source.substring(iLexema, fLexema);
                     tokens.add(new Token(TipoToken.MAYOR_EQ, lexema, null, linea));
                     estado = 0; iLexema = fLexema;
                     break;
-
                 case 8:
                     lexema = source.substring(iLexema, fLexema);
                     tokens.add(new Token(TipoToken.MAYOR, lexema, null, linea));

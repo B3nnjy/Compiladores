@@ -1,4 +1,4 @@
-package mx.ipn.escom.compiladores.transition_diagram_of_tokens;
+package mx.ipn.escom.compiladores.automatas;
 
 public class Numbers {
 
@@ -13,7 +13,7 @@ public class Numbers {
   }
 
   public static int CompIfIsNumber(int estado, char vistazo){
-    if (estado < 12){
+    if (estado < 12 || estado > 18){
       //Si no es el estado 12 siplemente sale del metodo
       return estado;
     }

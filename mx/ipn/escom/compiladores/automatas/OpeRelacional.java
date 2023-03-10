@@ -1,4 +1,4 @@
-package mx.ipn.escom.compiladores.transition_diagram_of_tokens;
+package mx.ipn.escom.compiladores.automatas;
 
 public class OpeRelacional {
 
@@ -13,7 +13,7 @@ public class OpeRelacional {
     }
 
     public static int CompIfIsOpRel(int estado, char vistazo){
-        if (estado != 0){
+        if (estado > 6){
             //Si no es el estado 0 siplemente sale del metodo
             return estado;
         }
@@ -24,10 +24,8 @@ public class OpeRelacional {
                 if(vistazo == '='){
                     estado = 5;
                 } else if (vistazo == '<') {
-                    
                     estado = 1;
                 } else if (vistazo == '>') {
-                    
                     estado = 6;
                 }
                 break;

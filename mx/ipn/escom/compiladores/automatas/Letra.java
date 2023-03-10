@@ -1,6 +1,6 @@
-package mx.ipn.escom.compiladores.transition_diagram_of_tokens;
+package mx.ipn.escom.compiladores.automatas;
 
-import static mx.ipn.escom.compiladores.transition_diagram_of_tokens.Numbers.isDigit;
+import static mx.ipn.escom.compiladores.automatas.Numbers.isDigit;
 
 public class Letra {
 
@@ -15,7 +15,7 @@ public class Letra {
 
 
     public static int CompIfIsLetter(int estado, char vistazo){
-        if (estado < 9){
+        if (estado < 9 || estado > 10){
             //Si no es el estado 9 siplemente sale del metodo
             return estado;
         }
