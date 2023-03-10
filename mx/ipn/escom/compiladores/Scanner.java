@@ -136,9 +136,41 @@ public class Scanner {
 
                 case 2:
                     lexema = source.substring(iLexema, fLexema);
-                    tokens.add(new Token(TipoToken.MENOR_EQ, lexema, null, linea))
+                    tokens.add(new Token(TipoToken.MENOR_EQ, lexema, null, linea));
                     estado = 0;
                     iLexema = fLexema;
+                    break;
+
+                case 3:
+                    lexema = source.substring(iLexema,fLexema);
+                    tokens.add(new Token(TipoToken.NOT_EQ, lexema, null, linea));
+                    estado = 0; iLexema = fLexema;
+                    break;
+
+                case 4:
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.MENOR, lexema, null, linea));
+                    estado = 0; iLexema =fLexema;
+                    i--;
+                    break;
+
+                case 5:
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.IGUAL, lexema, null , linea));
+                    estado = 0; iLexema = fLexema;
+                    break;
+
+                case 7:
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.MAYOR_EQ, lexema, null, linea));
+                    estado = 0; iLexema = fLexema;
+                    break;
+
+                case 8:
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.MAYOR, lexema, null, linea));
+                    estado = 0; iLexema = fLexema;
+                    i--;
                     break;
             }
 
@@ -187,8 +219,7 @@ public class Scanner {
         y al final agregar el token de fin de archivo
          */
         tokens.add(new Token(TipoToken.EOF, "", null, linea));
-        /*tokens.add(new Token(TipoToken.CLASE, "class",null ,linea ));
-        tokens.add(new Token(TipoToken.SI, "if", null, linea));*/
+
 
 
         return tokens;
