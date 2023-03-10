@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ae25a79-e7f1-4569-b426-02ecf385051a" name="Changes" comment="" />
+    <list default="true" id="6ae25a79-e7f1-4569-b426-02ecf385051a" name="Changes" comment="ManejarNumeros">
+      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/transition_diagram_of_tokens/Numbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/transition_diagram_of_tokens/Numbers.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Mi5oHo1nKn7hoYjiC3lCxCOY4Z" />
   <component name="ProjectViewState">
@@ -21,6 +30,10 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Alan Sigala/Desktop/Compiladores/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -43,10 +56,24 @@
       <updated>1678237736166</updated>
       <workItem from="1678237737931" duration="35000" />
       <workItem from="1678237798225" duration="11000" />
+      <workItem from="1678237835988" duration="1520000" />
+      <workItem from="1678322362603" duration="1511000" />
     </task>
+    <task id="LOCAL-00001" summary="ManejarNumeros">
+      <created>1678245424567</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1678245424567</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ManejarNumeros" />
+    <option name="LAST_COMMIT_MESSAGE" value="ManejarNumeros" />
   </component>
 </project>

@@ -2,6 +2,7 @@ package mx.ipn.escom.compiladores;
 
 import mx.ipn.escom.compiladores.transition_diagram_of_tokens.Letra;
 import mx.ipn.escom.compiladores.transition_diagram_of_tokens.Numbers;
+import mx.ipn.escom.compiladores.transition_diagram_of_tokens.OpeRelacional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +58,7 @@ public class Scanner {
 
             estado = Numbers.CompIfIsNumber(estado, vistazo);
             estado = Letra.CompIfIsLetter(estado, vistazo);
+            estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
 
             switch (estado){
                 case 0:
@@ -76,6 +78,12 @@ public class Scanner {
                         //Entra al diagrama de transicion para los identificadores y palabras reservadas
                         estado = 9;
                         estado = Letra.CompIfIsLetter(estado, vistazo);
+                    }
+
+                    if(OpeRelacional.isOpRel(vistazo)){
+                        //Entra al automata de los operadores relacionales
+                        estado = 0;
+                        estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
                     }
                     break;
 
@@ -126,8 +134,12 @@ public class Scanner {
                     i--;
                     break;
 
-
-
+                case 2:
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.MENOR_EQ, lexema, null, linea))
+                    estado = 0;
+                    iLexema = fLexema;
+                    break;
             }
 
 
