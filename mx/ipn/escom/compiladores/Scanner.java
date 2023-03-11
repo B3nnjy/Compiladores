@@ -3,6 +3,7 @@ package mx.ipn.escom.compiladores;
 import mx.ipn.escom.compiladores.automatas.Letra;
 import mx.ipn.escom.compiladores.automatas.Numbers;
 import mx.ipn.escom.compiladores.automatas.OpeRelacional;
+import mx.ipn.escom.compiladores.automatas.simbolos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,6 +86,13 @@ public class Scanner {
                         estado = 0;
                         estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
                     }
+
+                    if (simbolos.isSimbol(vistazo)){
+                        tokens.add(new Token(simbolos.CompSimbol(vistazo), String.valueOf(vistazo), null, linea));
+                        iLexema = fLexema + 1;
+                        continue;
+                    }
+
                     break;
                     //Estados finales
                 case 19:
@@ -165,52 +173,13 @@ public class Scanner {
             }
 
 
-            /*switch (vistazo){
-
-                case ('('):
-                    tokens.add(new Token(TipoToken.PAREN_IZQ, "(", null, linea));
-                    break;
-                case (')'):
-                    tokens.add(new Token(TipoToken.PAREN_DER, ")",null, linea));
-                    break;
-
-                case ('{'):
-                    tokens.add(new Token(TipoToken.LLAVE_IZQ, "{", null, linea));
-                    break;
-
-                case ('}'):
-                    tokens.add(new Token(TipoToken.LLAVE_DER, "}", null, linea));
-                    break;
-
-                case (','):
-                    tokens.add(new Token(TipoToken.COMA,",",null, linea));
-                    break;
-
-                case ('.'):
-                    tokens.add(new Token(TipoToken.PUNTO,".",null, linea));
-                    break;
-
-                case (';'):
-                    tokens.add(new Token(TipoToken.PUTO_COMA,";",null, linea));
-                    break;
-
-                case ('-'):
-                    tokens.add(new Token(TipoToken.MENOS,"-",null, linea));
-
-                case ("+"):
-                    tokens.add(new Token(TipoToken.MAS,"+",null, linea));
-            }*/
+            /**/
         }
 
 
 
-        /*
-        Analizar el texto de entrada para extraer todos los tokens
-        y al final agregar el token de fin de archivo
-         */
+        //Token de fin de archivo
         tokens.add(new Token(TipoToken.EOF, "", null, linea));
-
-
 
         return tokens;
     }
