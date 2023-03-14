@@ -49,6 +49,7 @@ public class Scanner {
         int iLexema = 0;
         int fLexema;
         String lexema;
+        boolean dentroComentario = false; // Nueva variable para rastrear si estás dentro de un comentario
 
         //Aquí va el corazón del scanner.
         for (int i = 0; i < source.length(); i++) {
@@ -59,6 +60,29 @@ public class Scanner {
             estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
 
             //System.out.println("flag " + estado);
+            if (vistazo == '/' && i + 1 < source.length() && source.charAt(i + 1) == '/') {
+                while (i < source.length() && source.charAt(i) != '\n') {
+                    i++;
+                }
+                iLexema = fLexema + 1;
+                continue;
+            }
+
+            // Ignorar comentarios multilinea
+            if (!dentroComentario && vistazo == '/' && i + 1 < source.length() && source.charAt(i + 1) == '*') {
+                dentroComentario = true;
+                i += 2;
+                continue;
+            }
+            if (dentroComentario && vistazo == '*' && i + 1 < source.length() && source.charAt(i + 1) == '/') {
+                dentroComentario = false;
+                i += 2;
+                continue;
+            }
+            if (dentroComentario) {
+                iLexema = fLexema + 1;
+                continue;
+            }
 
             switch (estado){
                 case 0:

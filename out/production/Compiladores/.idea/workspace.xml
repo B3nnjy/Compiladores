@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ae25a79-e7f1-4569-b426-02ecf385051a" name="Changes" comment="ManejarNumeros">
-      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/transition_diagram_of_tokens/Numbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/transition_diagram_of_tokens/Numbers.java" afterDir="false" />
-    </list>
+    <list default="true" id="32c7eff2-dcee-496b-a999-36780d719dbe" name="Changes" comment="Se agrego al scanner detecccion de letras" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -19,7 +23,8 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2Mi5oHo1nKn7hoYjiC3lCxCOY4Z" />
+  <component name="ProjectId" id="2Mk2lyYyFTr7gEFbrCjbunk800O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -29,51 +34,77 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alan Sigala/Desktop/Compiladores/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager">
-    <configuration name="Compiladores_proy" type="Application" factoryName="Application">
+    <configuration name="Interprete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mx.ipn.escom.compiladores.Interprete" />
       <module name="Compiladores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mx.ipn.escom.compiladores.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Interprete" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="6ae25a79-e7f1-4569-b426-02ecf385051a" name="Changes" comment="" />
-      <created>1678237736166</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1678237736166</updated>
-      <workItem from="1678237737931" duration="35000" />
-      <workItem from="1678237798225" duration="11000" />
-      <workItem from="1678237835988" duration="1520000" />
-      <workItem from="1678322362603" duration="1511000" />
-    </task>
-    <task id="LOCAL-00001" summary="ManejarNumeros">
-      <created>1678245424567</created>
+    <task id="LOCAL-00001" summary="Manejo de numeros y ER">
+      <created>1678261582025</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1678245424567</updated>
+      <updated>1678261582025</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="32c7eff2-dcee-496b-a999-36780d719dbe" name="Changes" comment="Manejo de numeros y ER" />
+      <created>1678297470355</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678297470355</updated>
+      <workItem from="1678297472046" duration="7139000" />
+      <workItem from="1678777073570" duration="1414000" />
+    </task>
+    <task id="LOCAL-00002" summary="Se agrego al scanner detecccion de letras">
+      <created>1678308885934</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1678308885934</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ManejarNumeros" />
-    <option name="LAST_COMMIT_MESSAGE" value="ManejarNumeros" />
+    <MESSAGE value="Manejo de numeros y ER" />
+    <MESSAGE value="Se agrego al scanner detecccion de letras" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se agrego al scanner detecccion de letras" />
   </component>
 </project>
