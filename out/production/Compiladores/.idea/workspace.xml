@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32c7eff2-dcee-496b-a999-36780d719dbe" name="Changes" comment="Se agrego al scanner detecccion de letras" />
+    <list default="true" id="32c7eff2-dcee-496b-a999-36780d719dbe" name="Changes" comment="Se implemento la omision de comentarios de una linea y multilinea">
+      <change beforePath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/mx/ipn/escom/compiladores/Scanner.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +78,8 @@
       <option name="presentableId" value="Default" />
       <updated>1678297470355</updated>
       <workItem from="1678297472046" duration="7139000" />
-      <workItem from="1678777073570" duration="1414000" />
+      <workItem from="1678777073570" duration="3950000" />
+      <workItem from="1678862298018" duration="1327000" />
     </task>
     <task id="LOCAL-00002" summary="Se agrego al scanner detecccion de letras">
       <created>1678308885934</created>
@@ -85,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678308885934</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Se implemento la omision de comentarios de una linea y multilinea">
+      <created>1678781068505</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1678781068505</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +115,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Manejo de numeros y ER" />
     <MESSAGE value="Se agrego al scanner detecccion de letras" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se agrego al scanner detecccion de letras" />
+    <MESSAGE value="Se implemento la omision de comentarios de una linea y multilinea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se implemento la omision de comentarios de una linea y multilinea" />
   </component>
 </project>

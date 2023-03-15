@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Scanner {
 
-    private final String source;
+    private String source;
 
     private final List<Token> tokens = new ArrayList<>();
 
@@ -52,6 +52,8 @@ public class Scanner {
         boolean dentroComentario = false; // Nueva variable para rastrear si estás dentro de un comentario
 
         //Aquí va el corazón del scanner.
+        source = source.replaceAll("/\\*.*?\\*/", "");
+        source = source.replaceAll("//.*", "");
         for (int i = 0; i < source.length(); i++) {
             char vistazo = source.charAt(i);
             fLexema = i;
@@ -60,7 +62,7 @@ public class Scanner {
             estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
 
             //System.out.println("flag " + estado);
-            if (vistazo == '/' && i + 1 < source.length() && source.charAt(i + 1) == '/') {
+            /*if (vistazo == '/' && i + 1 < source.length() && source.charAt(i + 1) == '/') {
                 while (i < source.length() && source.charAt(i) != '\n') {
                     i++;
                 }
@@ -82,7 +84,8 @@ public class Scanner {
             if (dentroComentario) {
                 iLexema = fLexema + 1;
                 continue;
-            }
+
+            }*/
 
             switch (estado){
                 case 0:
