@@ -2,38 +2,34 @@ package mx.ipn.escom.compiladores.automatas;
 
 import mx.ipn.escom.compiladores.TipoToken;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class simbolos {
+
+  private static final Map<String, TipoToken> simbolos = new HashMap<>();
+
+  static{
+    simbolos.put("(", TipoToken.PAREN_IZQ);
+    simbolos.put(")", TipoToken.PAREN_DER);
+    simbolos.put("{", TipoToken.LLAVE_IZQ);
+    simbolos.put("}", TipoToken.LLAVE_DER);
+    simbolos.put(",", TipoToken.COMA);
+    simbolos.put(".", TipoToken.PUNTO);
+    simbolos.put(";", TipoToken.PUTO_COMA);
+    simbolos.put("-", TipoToken.MENOS);
+    simbolos.put("+", TipoToken.MAS);
+    simbolos.put("*", TipoToken.ASTERISCO);
+    simbolos.put("/", TipoToken.DIAGONAL);
+    simbolos.put("!", TipoToken.NO);
+  }
+
   public static boolean isSimbol(char vistazo){
     //Comprueba si es un simbolo
-    if (vistazo == '(' || vistazo == ')' || vistazo == '{' || vistazo == '}' || vistazo == ',' || vistazo == '.' || vistazo == ';' || vistazo == '-' || vistazo == '+'){
-      return true;
-    }else{
-      return false;
-    }
+    return simbolos.get(Character.toString(vistazo)) != null;
   }
 
   public static TipoToken CompSimbol(char vistazo){
-    switch (vistazo){
-      case ('('):
-        return TipoToken.PAREN_IZQ;
-      case (')'):
-        return TipoToken.PAREN_DER;
-      case ('{'):
-        return TipoToken.LLAVE_IZQ;
-      case ('}'):
-        return TipoToken.LLAVE_DER;
-      case (','):
-        return TipoToken.COMA;
-      case ('.'):
-        return TipoToken.PUNTO;
-      case (';'):
-        return TipoToken.PUTO_COMA;
-      case ('-'):
-        return TipoToken.MENOS;
-      case ('+'):
-        return TipoToken.MAS;
-      default: return null;
-    }
+    return simbolos.get(Character.toString(vistazo));
   }
-
 }
