@@ -6,39 +6,14 @@ import mx.ipn.escom.compiladores.automatas.OpeRelacional;
 import mx.ipn.escom.compiladores.automatas.simbolos;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static mx.ipn.escom.compiladores.PalabrasReservadas.palabrasReservadas;
 
 public class Scanner {
-
     private String source;
-
     private final List<Token> tokens = new ArrayList<>();
-
     private int linea = 1;
-
-    private static final Map<String, TipoToken> palabrasReservadas;
-    static {
-        palabrasReservadas = new HashMap<>();
-        palabrasReservadas.put("y", TipoToken.Y);
-        palabrasReservadas.put("clase", TipoToken.CLASE);
-        palabrasReservadas.put("ademas", TipoToken.ADEMAS );
-        palabrasReservadas.put("falso", TipoToken.FALSO);
-        palabrasReservadas.put("para", TipoToken.PARA);
-        palabrasReservadas.put("fun", TipoToken.FUNCION); //definir funciones
-        palabrasReservadas.put("si", TipoToken.SI);
-        palabrasReservadas.put("nulo", TipoToken.NULO);
-        palabrasReservadas.put("o", TipoToken.O);
-        palabrasReservadas.put("imprimir", TipoToken.IMPRIMIR);
-        palabrasReservadas.put("retornar", TipoToken.RETORNAR);
-        palabrasReservadas.put("super", TipoToken.SUPER);
-        palabrasReservadas.put("este", TipoToken.ESTE);
-        palabrasReservadas.put("verdadero", TipoToken.VERDADERO);
-        palabrasReservadas.put("var", TipoToken.VARIABLE); //definir variables
-        palabrasReservadas.put("mientras", TipoToken.MIENTRAS);
-    }
-
 
     Scanner(String source){
         this.source = source;
