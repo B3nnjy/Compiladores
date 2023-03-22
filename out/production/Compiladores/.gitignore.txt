@@ -1,4 +1,0 @@
-# Ignorar la carpeta .idea
-.idea/
-out/
-

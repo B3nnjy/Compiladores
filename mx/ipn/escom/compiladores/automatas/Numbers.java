@@ -1,17 +1,8 @@
 package mx.ipn.escom.compiladores.automatas;
 
+import static java.lang.Character.isDigit;
+
 public class Numbers {
-
-  public static boolean isDigit(char vistazo){
-    //Motodo para comprobar si es un digito del 1 al 9
-    if(vistazo == '0' || vistazo == '1' || vistazo == '2' || vistazo== '3' || vistazo=='4' || vistazo == '5'
-        || vistazo == '6' || vistazo == '7' || vistazo == '8'|| vistazo == '9'){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
   public static int CompIfIsNumber(int estado, char vistazo){
     if (estado < 12 || estado > 18){
       //Si no es el estado 12 siplemente sale del metodo
@@ -27,10 +18,7 @@ public class Numbers {
         }
         break;
       case 13:
-        if(isDigit(vistazo)){
-          estado = 13;
-          break;
-        }else{
+        if (!isDigit(vistazo)) {
           if(vistazo ==  '.'){
             estado =  14;
           }else if (vistazo == 'E') {
@@ -46,12 +34,12 @@ public class Numbers {
         }
         break;
       case 15:
-        if(isDigit(vistazo)){
-          estado = 15;
-        }else if(vistazo == 'E'){
-          estado = 16;
-        }else{
-          estado = 21;
+        if (!isDigit(vistazo)) {
+          if(vistazo == 'E'){
+            estado = 16;
+          }else{
+            estado = 21;
+          }
         }
         break;
       case 16:
@@ -67,13 +55,10 @@ public class Numbers {
         }
         break;
       case 18:
-        if(isDigit(vistazo) || vistazo == '0'){
-          estado = 18;
-        }else{
+        if (!isDigit(vistazo) && vistazo != '0') {
           estado = 19;
         }
         break;
-
     }
     //Retorna el estado final
     return estado;
