@@ -1,19 +1,9 @@
 package mx.ipn.escom.compiladores.automatas;
 
-import static mx.ipn.escom.compiladores.automatas.Numbers.isDigit;
+import static java.lang.Character.isDigit;
+import static java.lang.Character.isLetter;
 
 public class Letra {
-
-    public static boolean isLetter(char vistazo){
-        //Motodo para comprobar si es una letra de la 'a' a la 'z' o de la 'A' a la 'Z'
-        if(Character.isLetter(vistazo)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
     public static int CompIfIsLetter(int estado, char vistazo){
         if (estado < 9 || estado > 10){
             //Si no es el estado 9 siplemente sale del metodo
@@ -29,9 +19,7 @@ public class Letra {
                 }
                 break;
             case 10:
-                if(isDigit(vistazo) || isLetter(vistazo)){
-                    estado = 10;
-                }else{
+                if (!isDigit(vistazo) && !isLetter(vistazo)) {
                     estado = 11;
                 }
                 break;
@@ -39,5 +27,4 @@ public class Letra {
         //Retorna el estado final
         return estado;
     }
-
 }

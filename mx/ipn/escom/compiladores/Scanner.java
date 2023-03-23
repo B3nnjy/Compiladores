@@ -6,39 +6,14 @@ import mx.ipn.escom.compiladores.automatas.OpeRelacional;
 import mx.ipn.escom.compiladores.automatas.simbolos;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static mx.ipn.escom.compiladores.PalabrasReservadas.palabrasReservadas;
 
 public class Scanner {
-
     private String source;
-
     private final List<Token> tokens = new ArrayList<>();
-
     private int linea = 1;
-
-    private static final Map<String, TipoToken> palabrasReservadas;
-    static {
-        palabrasReservadas = new HashMap<>();
-        palabrasReservadas.put("y", TipoToken.Y);
-        palabrasReservadas.put("clase", TipoToken.CLASE);
-        palabrasReservadas.put("ademas", TipoToken.ADEMAS );
-        palabrasReservadas.put("falso", TipoToken.FALSO);
-        palabrasReservadas.put("para", TipoToken.PARA);
-        palabrasReservadas.put("fun", TipoToken.FUNCION); //definir funciones
-        palabrasReservadas.put("si", TipoToken.SI);
-        palabrasReservadas.put("nulo", TipoToken.NULO);
-        palabrasReservadas.put("o", TipoToken.O);
-        palabrasReservadas.put("imprimir", TipoToken.IMPRIMIR);
-        palabrasReservadas.put("retornar", TipoToken.RETORNAR);
-        palabrasReservadas.put("super", TipoToken.SUPER);
-        palabrasReservadas.put("este", TipoToken.ESTE);
-        palabrasReservadas.put("verdadero", TipoToken.VERDADERO);
-        palabrasReservadas.put("var", TipoToken.VARIABLE); //definir variables
-        palabrasReservadas.put("mientras", TipoToken.MIENTRAS);
-    }
-
 
     Scanner(String source){
         this.source = source;
@@ -49,7 +24,6 @@ public class Scanner {
         int iLexema = 0;
         int fLexema;
         String lexema;
-        boolean dentroComentario = false; // Nueva variable para rastrear si estás dentro de un comentario
 
         //Aquí va el corazón del scanner.
         source = source.replaceAll("/\\*.*?\\*/", "");
@@ -57,35 +31,19 @@ public class Scanner {
         for (int i = 0; i < source.length(); i++) {
             char vistazo = source.charAt(i);
             fLexema = i;
+
+            if (vistazo == '=' && source.charAt(i + 1) == '='){
+                tokens.add(new Token(TipoToken.COMPARACION, "==", null, linea));
+                i ++;
+                iLexema = i;
+                continue;
+            }
+
             estado = Numbers.CompIfIsNumber(estado, vistazo);
             estado = Letra.CompIfIsLetter(estado, vistazo);
             estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
 
             //System.out.println("flag " + estado);
-            /*if (vistazo == '/' && i + 1 < source.length() && source.charAt(i + 1) == '/') {
-                while (i < source.length() && source.charAt(i) != '\n') {
-                    i++;
-                }
-                iLexema = fLexema + 1;
-                continue;
-            }
-
-            // Ignorar comentarios multilinea
-            if (!dentroComentario && vistazo == '/' && i + 1 < source.length() && source.charAt(i + 1) == '*') {
-                dentroComentario = true;
-                i += 2;
-                continue;
-            }
-            if (dentroComentario && vistazo == '*' && i + 1 < source.length() && source.charAt(i + 1) == '/') {
-                dentroComentario = false;
-                i += 2;
-                continue;
-            }
-            if (dentroComentario) {
-                iLexema = fLexema + 1;
-                continue;
-
-            }*/
 
             switch (estado){
                 case 0:
@@ -96,13 +54,13 @@ public class Scanner {
                         linea++;
                     }
 
-                    if (Numbers.isDigit(vistazo)){
+                    if (Character.isDigit(vistazo)){
                       //Entra al diagrama de transicion para los numeros sin signo
                       estado = 12;
                       estado = Numbers.CompIfIsNumber(estado, vistazo);
                     }
 
-                    if(Letra.isLetter(vistazo)){
+                    if(Character.isLetter(vistazo)){
                         //Entra al diagrama de transicion para los identificadores y palabras reservadas
                         estado = 9;
                         estado = Letra.CompIfIsLetter(estado, vistazo);
@@ -119,7 +77,6 @@ public class Scanner {
                         iLexema = fLexema + 1;
                         continue;
                     }
-
                     break;
                     //Estados finales
                 case 19:
@@ -163,16 +120,16 @@ public class Scanner {
                     i--;
                     break;
                 case 2:
-                    lexema = source.substring(iLexema, fLexema);
+                    lexema = source.substring(iLexema, fLexema + 1);
                     tokens.add(new Token(TipoToken.MENOR_EQ, lexema, null, linea));
                     estado = 0;
-                    iLexema = fLexema;
+                    iLexema = fLexema + 1;
                     break;
                 case 3:
-                    lexema = source.substring(iLexema, fLexema);
+                    lexema = source.substring(iLexema, fLexema + 1);
                     tokens.add(new Token(TipoToken.NOT_EQ, lexema, null, linea));
                     estado = 0;
-                    iLexema = fLexema;
+                    iLexema = fLexema + 1;
                     break;
                 case 4:
                     lexema = source.substring(iLexema, fLexema);
@@ -187,9 +144,10 @@ public class Scanner {
                     estado = 0; iLexema = fLexema;
                     break;
                 case 7:
-                    lexema = source.substring(iLexema, fLexema);
+                    lexema = source.substring(iLexema, fLexema + 1);
                     tokens.add(new Token(TipoToken.MAYOR_EQ, lexema, null, linea));
-                    estado = 0; iLexema = fLexema;
+                    estado = 0;
+                    iLexema = fLexema + 1;
                     break;
                 case 8:
                     lexema = source.substring(iLexema, fLexema);
@@ -198,12 +156,7 @@ public class Scanner {
                     i--;
                     break;
             }
-
-
-            /**/
         }
-
-
 
         //Token de fin de archivo
         tokens.add(new Token(TipoToken.EOF, "", null, linea));
