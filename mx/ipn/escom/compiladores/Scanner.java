@@ -27,7 +27,7 @@ public class Scanner {
 
         //Aquí va el corazón del scanner.
         source = source.replaceAll("/\\*.*?\\*/", "");
-        source = source.replaceAll("^//.*?$", "");
+        source = source.replaceAll("//.*?$", "");
         for (int i = 0; i < source.length(); i++) {
             char vistazo = source.charAt(i);
             fLexema = i;
@@ -77,6 +77,11 @@ public class Scanner {
                         iLexema = fLexema + 1;
                         continue;
                     }
+
+                    if(vistazo == '/')
+                        if(vistazo == '//')
+                            if(vistazo == '/*   */')
+                    //? | @  # $ % &
                     break;
                     //Estados finales
                 case 19:

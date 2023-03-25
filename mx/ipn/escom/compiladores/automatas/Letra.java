@@ -17,6 +17,8 @@ public class Letra {
                 if(isLetter(vistazo)){
                     estado = 10;
                 }
+
+
                 break;
             case 10:
                 if (!isDigit(vistazo) && !isLetter(vistazo)) {

@@ -3,6 +3,8 @@ package mx.ipn.escom.compiladores.automatas;
 import static java.lang.Character.isDigit;
 
 public class Numbers {
+  double prueba = 123.2;
+
   public static int CompIfIsNumber(int estado, char vistazo){
     if (estado < 12 || estado > 18){
       //Si no es el estado 12 siplemente sale del metodo
