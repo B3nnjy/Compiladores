@@ -5,11 +5,7 @@ public class OpeRelacional {
 
     public static boolean isOpRel(char vistazo){
         //Motodo para comprobar si es un operador relacional
-        if(vistazo == '<' || vistazo == '=' || vistazo == '>'){
-            return true;
-        }else{
-            return false;
-        }
+        return (vistazo == '<' || vistazo == '=' || vistazo == '>') ? true : false;
     }
 
     public static int CompIfIsOpRel(int estado, char vistazo){
@@ -34,12 +30,17 @@ public class OpeRelacional {
                     estado = 2;
                 } else if (vistazo == '>') {
                     estado = 3;
-                    
                 }else
                     estado = 4;
                 break;
+            case 5:
+                if (vistazo == '='){
+                    estado = 22;
+                }else{
+                    estado = 23;
+                }
+                break;
             case 6:
-
                 if (vistazo == '='){
                     estado = 7;
                 }else
