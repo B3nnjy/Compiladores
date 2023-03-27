@@ -50,6 +50,10 @@ public class Scanner {
                         estado = 1000;
                         continue;
                     }
+                    if (vistazo == '"' ){
+                        estado = 1002;
+                        continue;
+                    }
                     if (vistazo == '/' && source.charAt(i + 1) == '/'){
                         estado = 1001;
                         continue;
@@ -78,6 +82,11 @@ public class Scanner {
                     //  if(vistazo == '//')
                     //    if(vistazo == '/*   */')
                     //? | @  # $ % &
+
+                    if(vistazo == ']' || vistazo == '[' || vistazo == '¨' || vistazo == '~' || vistazo == '^' || vistazo == '?' || vistazo == '|' || vistazo == '@' || vistazo == '#' || vistazo == '$' || vistazo == '%' || vistazo == '&'){
+                        // caracter ilegal encontrado
+                        Interprete.error(linea, "caracter ilegal encontrado");
+                    }
                     break;
                     //Estados finales
                 case 2:
@@ -175,6 +184,16 @@ public class Scanner {
                     if (vistazo == '\n'){
                         estado = 0;
                         iLexema = i+1;
+                    }
+                    break;
+                case 1002:
+                    if (vistazo != '"'){
+
+                        fLexema +=vistazo;
+                    }else {
+                        lexema = source.substring(iLexema + 1, fLexema);
+                        tokens.add(new Token(TipoToken.CADENA, lexema, null, linea));
+                        estado = 0;
                     }
                     break;
             }
