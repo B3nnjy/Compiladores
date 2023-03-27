@@ -1,9 +1,6 @@
 package mx.ipn.escom.compiladores;
 
-import mx.ipn.escom.compiladores.automatas.Letra;
-import mx.ipn.escom.compiladores.automatas.Numbers;
-import mx.ipn.escom.compiladores.automatas.OpeRelacional;
-import mx.ipn.escom.compiladores.automatas.simbolos;
+import mx.ipn.escom.compiladores.automatas.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +26,6 @@ public class Scanner {
         for (int i = 0; i < source.length(); i++) {
             char vistazo = source.charAt(i);
             fLexema = i;
-
-            //System.out.println("flag " + estado);
-
             estado = Numbers.CompIfIsNumber(estado, vistazo);
             estado = Letra.CompIfIsLetter(estado, vistazo);
             estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
@@ -40,53 +34,38 @@ public class Scanner {
                 case 0:
                     if (vistazo == ' ' || vistazo == '\t'){
                         iLexema = fLexema + 1;
-                        continue;
                     }else if (vistazo == '\n') {
                         iLexema = i + 1;
                         linea++;
-                        continue;
-                    }
-                    if (vistazo == '/' && source.charAt(i + 1) == '*'){
+                    }else if (vistazo == '/' && source.charAt(i + 1) == '*'){
                         estado = 1000;
-                        continue;
-                    }
-                    if (vistazo == '"' ){
+                    }else if (vistazo == '"' ){
                         estado = 1002;
-                        continue;
-                    }
-                    if (vistazo == '/' && source.charAt(i + 1) == '/'){
+                    }else if (vistazo == '/' && source.charAt(i + 1) == '/'){
                         estado = 1001;
-                        continue;
-                    }
-                    if (Character.isDigit(vistazo)){
+                    }else if (Character.isDigit(vistazo)){
                       //Entra al diagrama de transicion para los numeros sin signo
                       estado = 12;
                       estado = Numbers.CompIfIsNumber(estado, vistazo);
-                    }
-                    if(Character.isLetter(vistazo)){
+                    }else if(Character.isLetter(vistazo)){
                         //Entra al diagrama de transicion para los identificadores y palabras reservadas
                         estado = 9;
                         estado = Letra.CompIfIsLetter(estado, vistazo);
-                    }
-                    if(OpeRelacional.isOpRel(vistazo)){
+                    }else if(OpeRelacional.isOpRel(vistazo)){
                         //Entra al automata de los operadores relacionales
-                        estado = 0;
                         estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
-                    }
-                    if (simbolos.isSimbol(vistazo)){
+                    }else if (simbolos.isSimbol(vistazo)){
                         tokens.add(new Token(simbolos.CompSimbol(vistazo), String.valueOf(vistazo), null, linea));
                         iLexema = fLexema + 1;
-                        continue;
-                    }
-                    //if(vistazo == '/')
-                    //  if(vistazo == '//')
-                    //    if(vistazo == '/*   */')
-                    //? | @  # $ % &
-
-                    if(vistazo == ']' || vistazo == '[' || vistazo == '¨' || vistazo == '~' || vistazo == '^' || vistazo == '?' || vistazo == '|' || vistazo == '@' || vistazo == '#' || vistazo == '$' || vistazo == '%' || vistazo == '&'){
+                    }else{
                         // caracter ilegal encontrado
-                        Interprete.error(linea, "caracter ilegal encontrado");
+                        iLexema = i+1;
+                        Interprete.error(linea, "caracter ilegal encontrado [" + vistazo + "]");
                     }
+                    //if(vistazo == ']' || vistazo == '[' || vistazo == '¨' || vistazo == '~' || vistazo == '^' || vistazo == '?' || vistazo == '|' || vistazo == '@' || vistazo == '#' || vistazo == '$' || vistazo == '%' || vistazo == '&'){
+                       // caracter ilegal encontrado
+                      //  Interprete.error(linea, "caracter ilegal encontrado");
+                    //}
                     break;
                     //Estados finales
                 case 2:
@@ -184,12 +163,12 @@ public class Scanner {
                     if (vistazo == '\n'){
                         estado = 0;
                         iLexema = i+1;
+                        linea++;
                     }
                     break;
                 case 1002:
                     if (vistazo != '"'){
-
-                        fLexema +=vistazo;
+                        fLexema += vistazo;
                     }else {
                         lexema = source.substring(iLexema + 1, fLexema);
                         tokens.add(new Token(TipoToken.CADENA, lexema, null, linea));
@@ -205,33 +184,3 @@ public class Scanner {
         return tokens;
     }
 }
-
-/*
-Signos o símbolos del lenguaje:
-(
-)
-{
-}
-,
-.
-;
--
-+
-*
-/
-!
-!=
-=
-==
-<
-<=
->
->=
-// -> comentarios (no se genera token)
-/* ... * / -> comentarios (no se genera token)
-Identificador,
-Cadena
-Numero
-Cada palabra reservada tiene su nombre de token
-
- */
