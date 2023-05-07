@@ -1,5 +1,7 @@
 package mx.ipn.escom.compiladores;
 
+import mx.ipn.escom.compiladores.asd.Parser;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -50,8 +52,15 @@ public class Interprete {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
 
-        for(Token token : tokens){
-            System.out.println(token);
+        Parser analisis = new Parser(tokens);
+
+
+        if (!existenErrores){
+            if (!analisis.Validar()){
+                /*for(Token token : tokens){
+                    System.out.println(token);
+                }*/
+            }
         }
     }
 
@@ -61,7 +70,6 @@ public class Interprete {
     Interprete.error(....);
      */
     static void error(int linea, String mensaje){
-
         reportar(linea, mensaje);
     }
 
