@@ -1,0 +1,54 @@
+package mx.ipn.escom.compiladores.primeros;
+
+public class Primeros {
+  public static Primary primary = new Primary();
+  public static Primary call = primary;
+  public static Primary call_opc = call;
+  public static Call_2 call_2 = new Call_2();
+  public static Unary unary = new Unary();
+  public static Factor_2 factor_2 = new Factor_2();
+  public static Unary factor = unary;
+  public static Term_2 term_2 = new Term_2();
+  public static Unary term = factor;
+  public static Comparison_2 comparison_2 = new Comparison_2();
+  public static Unary comparison = term;
+  public static Equality_2 equality_2 = new Equality_2();
+  public static Unary equality = comparison;
+  public static Logic_and_2 logic_and_2 = new Logic_and_2();
+  public static Unary logic_and = equality;
+  public static Logic_or_2 logic_or_2 = new Logic_or_2();
+  public static Unary logic_or = logic_and;
+  public static Assigment_2 assigment_2 = new Assigment_2();
+  public static Aux aux = new Aux();
+  public static Call_3 call_3 = new Call_3();
+  public static Assigment assigment = new Assigment();
+  public static Assigment expression = assigment;
+  public static Statement statement = new Statement();
+  public static Assigment expr_stmt = expression;
+  public static For_stmt for_stmt = new For_stmt();
+  public static Var_decl var_decl = new Var_decl();
+  public static For_stmt_1 for_stmt_1 = new For_stmt_1();
+  public static For_stmt_2 for_stmt_2 = new For_stmt_2();
+  public static Assigment for_stmt_3 = expression;
+  public static If_stmt if_stmt = new If_stmt();
+  public static Else_stmt else_stmt = new Else_stmt();
+  public static Print_stmt print_stmt = new Print_stmt();
+  public static Return_stmt return_stmt = new Return_stmt();
+  public static Assigment return_exp_opc = expression;
+  public static While_stmt while_stmt = new While_stmt();
+  public static Block block = new Block();
+  public static Var_init var_init = new Var_init();
+  public static Fun_decl fun_decl = new Fun_decl();
+  public static Class_inher class_inher = new Class_inher();
+  public static Class_decl class_decl = new Class_decl();
+  public static Declaration declaration = new Declaration();
+  public static Function function = new Function();
+  public static Function functions = function;
+  public static Function parameters_opc = function;
+  public static Function parameters = functions;
+  public static Parameters_2 parameters_2 = new Parameters_2();
+  public static Assigment arguments_opc = expression;
+  public static Assigment arguments = expression;
+  public static Parameters_2 arguments_2 = parameters_2;
+
+}

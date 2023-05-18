@@ -14,6 +14,7 @@ public class PalabrasReservadas {
     palabrasReservadas.put("para", TipoToken.PARA);
     palabrasReservadas.put("fun", TipoToken.FUNCION); //definir funciones
     palabrasReservadas.put("si", TipoToken.SI);
+    palabrasReservadas.put("sino", TipoToken.SI_NO);
     palabrasReservadas.put("nulo", TipoToken.NULO);
     palabrasReservadas.put("o", TipoToken.O);
     palabrasReservadas.put("imprimir", TipoToken.IMPRIMIR);
