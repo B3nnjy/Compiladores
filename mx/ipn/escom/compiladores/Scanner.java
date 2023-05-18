@@ -55,7 +55,7 @@ public class Scanner {
                         //Entra al automata de los operadores relacionales
                         estado = OpeRelacional.CompIfIsOpRel(estado, vistazo);
                     }else if (simbolos.isSimbol(vistazo)){
-                        tokens.add(new Token(simbolos.CompSimbol(vistazo), String.valueOf(vistazo), null, linea));
+                        tokens.add(new Token(simbolos.CompSimbol(vistazo), String.valueOf(vistazo), null, linea, iLexema));
                         iLexema = fLexema + 1;
                     } /*if (vistazo == '\0') {
                         break;
@@ -74,32 +74,32 @@ public class Scanner {
                     //Estados finales
                 case 2:
                     lexema = source.substring(iLexema, fLexema + 1);
-                    tokens.add(new Token(TipoToken.MENOR_EQ, lexema, null, linea));
+                    tokens.add(new Token(TipoToken.MENOR_EQ, lexema, null, linea, iLexema));
                     estado = 0;
                     iLexema = fLexema + 1;
                     break;
                 case 3:
                     lexema = source.substring(iLexema, fLexema + 1);
-                    tokens.add(new Token(TipoToken.NOT_EQ, lexema, null, linea));
+                    tokens.add(new Token(TipoToken.NOT_EQ, lexema, null, linea, iLexema));
                     estado = 0;
                     iLexema = fLexema + 1;
                     break;
                 case 4:
                     lexema = source.substring(iLexema, fLexema);
-                    tokens.add(new Token(TipoToken.MENOR, lexema, null, linea));
+                    tokens.add(new Token(TipoToken.MENOR, lexema, null, linea, iLexema));
                     estado = 0;
                     iLexema =fLexema;
                     i--;
                     break;
                 case 7:
                     lexema = source.substring(iLexema, fLexema + 1);
-                    tokens.add(new Token(TipoToken.MAYOR_EQ, lexema, null, linea));
+                    tokens.add(new Token(TipoToken.MAYOR_EQ, lexema, null, linea, iLexema));
                     estado = 0;
                     iLexema = fLexema + 1;
                     break;
                 case 8:
                     lexema = source.substring(iLexema, fLexema);
-                    tokens.add(new Token(TipoToken.MAYOR, lexema, null, linea));
+                    tokens.add(new Token(TipoToken.MAYOR, lexema, null, linea, iLexema));
                     estado = 0; iLexema = fLexema;
                     i--;
                     break;
@@ -108,10 +108,10 @@ public class Scanner {
                     TipoToken tt = palabrasReservadas.get(lexema);
                     if(tt == null) {
                         //Crear el token tipo identificador
-                        tokens.add( new Token(TipoToken.IDENTIFICADOR, lexema, null, linea) );
+                        tokens.add( new Token(TipoToken.IDENTIFICADOR, lexema, null, linea, iLexema));
                     }
                     else{
-                        tokens.add( new Token(tt, lexema, null, linea) );
+                        tokens.add( new Token(tt, lexema, null, linea, iLexema));
                     }
                     estado = 0;
                     iLexema = fLexema;
@@ -124,34 +124,34 @@ public class Scanner {
                     String potencia = lexema.substring(E+1);
                     float enteroP = Float.parseFloat(entero);
                     int pow = Integer.parseInt(potencia);
-                    tokens.add(new Token(TipoToken.NUMERO, lexema, enteroP*(Math.pow(10, pow)), linea));
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, enteroP*(Math.pow(10, pow)), linea, iLexema));
                     iLexema = fLexema;
                     estado = 0;
                     i--;
                     break;
                 case 20:
                     lexema = source.substring(iLexema, fLexema);
-                    tokens.add(new Token(TipoToken.NUMERO, lexema, Integer.parseInt(lexema), linea));
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, Integer.parseInt(lexema), linea, iLexema));
                     iLexema = fLexema;
                     estado = 0;
                     i--;
                     break;
                 case 21:
                     lexema = source.substring(iLexema, fLexema);
-                    tokens.add(new Token(TipoToken.NUMERO, lexema, Float.parseFloat(lexema), linea));
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, Float.parseFloat(lexema), linea, iLexema));
                     iLexema = fLexema;
                     estado = 0;
                     i--;
                     break;
                 case 22:
-                    tokens.add(new Token(TipoToken.COMPARACION, "==", null, linea));
+                    tokens.add(new Token(TipoToken.COMPARACION, "==", null, linea, iLexema));
                     i ++;
                     iLexema = i;
                     estado = 0;
                     break;
                 case 23:
                     lexema = source.substring(iLexema, fLexema);
-                    tokens.add(new Token(TipoToken.IGUAL, lexema, null , linea));
+                    tokens.add(new Token(TipoToken.IGUAL, lexema, null , linea, iLexema));
                     estado = 0;
                     iLexema = fLexema;
                     i--;
@@ -175,7 +175,7 @@ public class Scanner {
                         fLexema += vistazo;
                     }else {
                         lexema = source.substring(iLexema + 1, fLexema);
-                        tokens.add(new Token(TipoToken.CADENA, lexema, null, linea));
+                        tokens.add(new Token(TipoToken.CADENA, lexema, null, linea, iLexema));
                         estado = 0;
                     }
                     break;
@@ -183,7 +183,7 @@ public class Scanner {
         }
 
         //Token de fin de archivo
-        tokens.add(new Token(TipoToken.EOF, "", null, linea));
+        tokens.add(new Token(TipoToken.EOF, "", null, linea, iLexema));
 
         return tokens;
     }
