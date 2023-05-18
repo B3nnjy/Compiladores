@@ -57,15 +57,19 @@ public class Scanner {
                     }else if (simbolos.isSimbol(vistazo)){
                         tokens.add(new Token(simbolos.CompSimbol(vistazo), String.valueOf(vistazo), null, linea));
                         iLexema = fLexema + 1;
+                    } /*if (vistazo == '\0') {
+                        break;
                     }else{
-                        // caracter ilegal encontrado
-                        iLexema = i+1;
-                        Interprete.error(linea, "caracter ilegal encontrado [" + vistazo + "]");
-                    }
-                    //if(vistazo == ']' || vistazo == '[' || vistazo == '¨' || vistazo == '~' || vistazo == '^' || vistazo == '?' || vistazo == '|' || vistazo == '@' || vistazo == '#' || vistazo == '$' || vistazo == '%' || vistazo == '&'){
+                            // caracter ilegal encontrado
+                            iLexema = i+1;
+                            Interprete.error(linea, "caracter ilegal encontrado [" + vistazo + "]");
+                        }*/
+
+                    if(vistazo == ']' || vistazo == '[' || vistazo == '¨' || vistazo == '~' || vistazo == '^' || vistazo == '?' || vistazo == '|' || vistazo == '@' || vistazo == '#' || vistazo == '$' || vistazo == '%' || vistazo == '&'){
                        // caracter ilegal encontrado
-                      //  Interprete.error(linea, "caracter ilegal encontrado");
-                    //}
+                        Interprete.error(linea, "caracter ilegal encontrado:" + vistazo);
+                        iLexema = i+1;
+                    }
                     break;
                     //Estados finales
                 case 2:
