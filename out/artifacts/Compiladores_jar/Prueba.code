@@ -1,0 +1,25 @@
+y clase ademas falso para fun si nulo o imprimir retornar super este verdadero var mientras /*Palabras clave*/
+
+//Identificador, igual y numero
+Variable1 = 123;
+Variable2 = 12.3;
+Variable3 = 34E2;
+12.1.12
+//simbolos
+(){},.;-+ 
+* / ! = == < <= > >= <> /*asterisco, diagonal, igual, 
+comparacion, menor, menor-igual, mayor, mayor-igual, diferente*/
+
+//Ejemplo codigo
+
+si ( Var#$ible1 < Variable2){
+	retornar Variable3;
+}FALSO{
+	retornar Variable1
+}
+
+iop
+	if ty
+var Texto = "Esto es una cadena de caracteres";
+
+%&# Identificador
