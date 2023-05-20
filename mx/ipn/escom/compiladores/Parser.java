@@ -1,5 +1,6 @@
 package mx.ipn.escom.compiladores;
 
+import mx.ipn.escom.compiladores.primeros.Class_inher;
 import mx.ipn.escom.compiladores.primeros.Primeros;
 
 import java.util.List;
@@ -20,11 +21,11 @@ public class Parser {
         Declaration();
 
         if(!hayErrores && !preanalisis.equals(TipoToken.EOF)){
-            System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". No se esperaba el token " + preanalisis.tipo);
+
         }
         else if(!hayErrores && preanalisis.equals(TipoToken.EOF)){
             System.out.println("Consulta válida");
-        }
+        }System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". No se esperaba el token " + preanalisis.tipo);
 
         /*if(!preanalisis.equals(finCadena)){
             System.out.println("Error en la posición " + preanalisis.posicion + ". No se esperaba el token " + preanalisis.tipo);
@@ -49,6 +50,16 @@ public class Parser {
     }
 
     public void Class_decl(){
+        if(preanalisis.equals(TipoToken.CLASE)){
+            coincidir(TipoToken.CLASE);
+            coincidir(TipoToken.IDENTIFICADOR);
+            Class_inher();
+            coincidir(TipoToken.LLAVE_IZQ);
+
+        }else {
+            System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". Se esperaba un  " + TipoToken.CLASE);
+        }
+
 
     }
 
@@ -64,16 +75,32 @@ public class Parser {
 
     }
 
-    void coincidir(Token t){
+    public void Class_inher(){
+        coincidir(TipoToken.MENOR);
+    }
+
+    public void Funtions(){
+        if (Primeros.function.find(preanalisis.tipo)){
+            Funtions();
+        }
+    }
+    public void Funtion(){
+        if (preanalisis.equals(TipoToken.IDENTIFICADOR)){
+            coincidir(TipoToken.IDENTIFICADOR);
+            coincidir(TipoToken.PAREN_IZQ);
+        }
+    }
+
+    void coincidir(TipoToken t){
         if(hayErrores) return;
 
-        if(preanalisis.tipo == t.tipo){
+        if(preanalisis.tipo == t){
             i++;
             preanalisis = tokens.get(i);
         }
         else{
             hayErrores = true;
-            System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". Se esperaba un  " + t.tipo);
+            System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". Se esperaba un  " + t);
 
         }
     }
