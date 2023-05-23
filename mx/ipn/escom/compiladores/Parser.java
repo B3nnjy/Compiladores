@@ -93,8 +93,134 @@ public class Parser {
     private void Assignment() {
         if (Primeros.call_opc.find(preanalisis.tipo)){
             Call_opc();
+            coincidir(TipoToken.IDENTIFICADOR);
+            coincidir(TipoToken.IGUAL);
+            Assignment();
+        } else if (Primeros.logic_or.find(preanalisis.tipo)) {
+            Logic_or();
+            
         }
     }
+
+    private void Logic_or() {
+        if (Primeros.logic_and.find(preanalisis.tipo)){
+            Logic_and();
+            Logic_or_2();
+        }
+    }
+
+    private void Logic_or_2() {
+        if (preanalisis.equals(TipoToken.O)){
+            coincidir(TipoToken.O);
+            Logic_and();
+            Logic_or_2();
+        }
+    }
+
+    private void Logic_and() {
+        if (Primeros.equality.find(preanalisis.tipo)){
+            Equality();
+            Logic_and_2();
+        }
+    }
+
+    private void Equality() {
+        if (Primeros.comparison.find(preanalisis.tipo)){
+            Comparison();
+            Equality_2();
+        }
+    }
+
+    private void Equality_2() {
+        if (preanalisis.equals(TipoToken.NOT_EQ)){
+            coincidir(TipoToken.NOT_EQ);
+            Comparison();
+            Equality_2();
+        } else if (preanalisis.equals(TipoToken.COMPARACION)) {
+            coincidir(TipoToken.COMPARACION);
+            Comparison();
+            Equality_2();
+        }
+    }
+
+    private void Comparison() {
+        if (Primeros.term.find(preanalisis.tipo)){
+            Term();
+            Comparison_2();
+        }
+    }
+
+    private void Comparison_2() {
+        if (preanalisis.equals(TipoToken.MAYOR)){
+            coincidir(TipoToken.MAYOR);
+            Term();
+            Comparison_2();
+        } else if (preanalisis.equals(TipoToken.MAYOR_EQ)) {
+            coincidir(TipoToken.MAYOR_EQ);
+            Term();
+            Comparison_2();
+        } else if (preanalisis.equals(TipoToken.MENOR)) {
+            coincidir(TipoToken.MENOR);
+            Term();
+            Comparison_2();
+        } else if (preanalisis.equals(TipoToken.MENOR_EQ)) {
+            coincidir(TipoToken.MENOR_EQ);
+            Term();
+            Comparison_2();
+        }
+    }
+
+    private void Term() {
+        if (Primeros.factor.find(preanalisis.tipo)){
+            Factor();
+            Term_2();
+        }
+    }
+
+    private void Term_2() {
+        if (preanalisis.equals(TipoToken.MENOR)){
+            coincidir(TipoToken.MENOR);
+            Factor();
+            Term_2();
+        } else if (preanalisis.equals(TipoToken.MAS)) {
+            Factor();
+            Term_2();
+        }
+    }
+
+    private void Factor() {
+        if (Primeros.unary.find(preanalisis.tipo)){
+            Unary();
+            Factor_2();
+        }
+    }
+
+    private void Factor_2() {
+        if (preanalisis.equals(TipoToken.DIAGONAL)){
+            coincidir(TipoToken.DIAGONAL);
+            Unary();
+            Factor_2();
+        } else if (preanalisis.equals(TipoToken.ASTERISCO)) {
+            coincidir(TipoToken.ASTERISCO);
+            Unary();
+            Factor_2();
+        }
+    }
+
+    private void Unary() {
+        if (preanalisis.equals(TipoToken.)){
+
+        }
+    }
+
+    private void Logic_and_2() {
+        if (preanalisis.equals(TipoToken.Y)){
+            coincidir(TipoToken.Y);
+            Logic_and();
+            Logic_or_2();
+        }
+    }
+
 
     private void Call_opc() {
         if (Primeros.call.find(preanalisis.tipo)){
@@ -112,15 +238,23 @@ public class Parser {
     private void Primary() {
         if (preanalisis.equals(TipoToken.VERDADERO)){
             coincidir(TipoToken.VERDADERO);
+        } else if (preanalisis.equals(TipoToken.FALSO)) {
             coincidir(TipoToken.FALSO);
+        } else if (preanalisis.equals(TipoToken.NULO)) {
             coincidir(TipoToken.NULO);
+        } else if (preanalisis.equals(TipoToken.ESTE)) {
             coincidir(TipoToken.ESTE);
+        } else if (preanalisis.equals(TipoToken.NUMERO)) {
             coincidir(TipoToken.NUMERO);
+        } else if (preanalisis.equals(TipoToken.CADENA)) {
             coincidir(TipoToken.CADENA);
+        } else if (preanalisis.equals(TipoToken.IDENTIFICADOR)) {
             coincidir(TipoToken.IDENTIFICADOR);
+        } else if (preanalisis.equals(TipoToken.PAREN_IZQ)) {
             coincidir(TipoToken.PAREN_IZQ);
             Expression();
             coincidir(TipoToken.PAREN_DER);
+        } else if (preanalisis.equals(TipoToken.SUPER)) {
             coincidir(TipoToken.SUPER);
             coincidir(TipoToken.PUNTO);
             coincidir(TipoToken.IDENTIFICADOR);
