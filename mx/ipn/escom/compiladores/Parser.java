@@ -72,6 +72,11 @@ public class Parser {
     }
 
     public void Var_decl(){
+        if (preanalisis.equals(TipoToken.VARIABLE)){
+            coincidir(TipoToken.VARIABLE);
+            coincidir(TipoToken.IDENTIFICADOR);
+            Var_init();
+        }
 
     }
 
@@ -82,6 +87,7 @@ public class Parser {
     public void Var_init(){
         if (preanalisis.equals(TipoToken.IGUAL)){
             coincidir(TipoToken.IGUAL);
+            Expression();
         }
     }
     public void Expression(){
@@ -98,7 +104,6 @@ public class Parser {
             Assignment();
         } else if (Primeros.logic_or.find(preanalisis.tipo)) {
             Logic_or();
-            
         }
     }
 
@@ -206,10 +211,33 @@ public class Parser {
             Factor_2();
         }
     }
+    private void Expr_stmt(){
+        if (Primeros.expr_stmt.find(preanalisis.tipo)){
+            Expression();
+        }
+    }
+
+    private void For_stmt(){
+        if (preanalisis.equals(TipoToken.PARA)){
+            coincidir(TipoToken.PARA);
+            coincidir(TipoToken.PAREN_IZQ);
+            For_stmt_1();
+            For_stmt_2();
+            For_stmt_3();
+            coincidir(TipoToken.PAREN_DER);
+            Statement();
+        }
+    }
 
     private void Unary() {
-        if (preanalisis.equals(TipoToken.)){
-
+        if (preanalisis.equals(TipoToken.NO)){
+            coincidir(preanalisis.tipo);
+            Unary();
+        } else if (preanalisis.equals(TipoToken.MENOS)) {
+            coincidir(preanalisis.tipo);
+            Unary();
+        } else if (Primeros.call.find(preanalisis.tipo)) {
+            Call();
         }
     }
 
