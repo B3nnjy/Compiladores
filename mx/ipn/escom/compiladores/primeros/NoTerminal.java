@@ -19,4 +19,8 @@ public class NoTerminal {
             System.out.println(i);
         }
     }
+
+    public ArrayList<TipoToken> getPrimeros(){
+        return this.primeros;
+    }
 }

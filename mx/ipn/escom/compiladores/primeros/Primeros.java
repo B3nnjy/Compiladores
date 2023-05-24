@@ -141,10 +141,10 @@ public class Primeros {
 
     for_stmt_1.primeros.addAll(var_decl.primeros);
     for_stmt_1.primeros.addAll(expr_stmt.primeros);
-    for_stmt_1.primeros.add(TipoToken.PUTO_COMA);
+    for_stmt_1.primeros.add(TipoToken.PUNTO_COMA);
 
     for_stmt_2.primeros.addAll(expression.primeros);
-    for_stmt_2.primeros.add(TipoToken.PUTO_COMA);
+    for_stmt_2.primeros.add(TipoToken.PUNTO_COMA);
 
     declaration.primeros.addAll(class_decl.primeros);
     declaration.primeros.addAll(fun_decl.primeros);
