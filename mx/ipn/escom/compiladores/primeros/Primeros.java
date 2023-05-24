@@ -1,54 +1,154 @@
 package mx.ipn.escom.compiladores.primeros;
 
-public class Primeros {
-  public static Primary primary = new Primary();
-  public static Primary call = primary;
-  public static Primary call_opc = call;
-  public static Call_2 call_2 = new Call_2();
-  public static Unary unary = new Unary();
-  public static Factor_2 factor_2 = new Factor_2();
-  public static Unary factor = unary;
-  public static Term_2 term_2 = new Term_2();
-  public static Unary term = factor;
-  public static Comparison_2 comparison_2 = new Comparison_2();
-  public static Unary comparison = term;
-  public static Equality_2 equality_2 = new Equality_2();
-  public static Unary equality = comparison;
-  public static Logic_and_2 logic_and_2 = new Logic_and_2();
-  public static Unary logic_and = equality;
-  public static Logic_or_2 logic_or_2 = new Logic_or_2();
-  public static Unary logic_or = logic_and;
-  public static Assigment_2 assigment_2 = new Assigment_2();
-  public static Aux aux = new Aux();
-  public static Call_3 call_3 = new Call_3();
-  public static Assigment assigment = new Assigment();
-  public static Assigment expression = assigment;
-  public static Statement statement = new Statement();
-  public static Assigment expr_stmt = expression;
-  public static For_stmt for_stmt = new For_stmt();
-  public static Var_decl var_decl = new Var_decl();
-  public static For_stmt_1 for_stmt_1 = new For_stmt_1();
-  public static For_stmt_2 for_stmt_2 = new For_stmt_2();
-  public static Assigment for_stmt_3 = expression;
-  public static If_stmt if_stmt = new If_stmt();
-  public static Else_stmt else_stmt = new Else_stmt();
-  public static Print_stmt print_stmt = new Print_stmt();
-  public static Return_stmt return_stmt = new Return_stmt();
-  public static Assigment return_exp_opc = expression;
-  public static While_stmt while_stmt = new While_stmt();
-  public static Block block = new Block();
-  public static Var_init var_init = new Var_init();
-  public static Fun_decl fun_decl = new Fun_decl();
-  public static Class_inher class_inher = new Class_inher();
-  public static Class_decl class_decl = new Class_decl();
-  public static Declaration declaration = new Declaration();
-  public static Function function = new Function();
-  public static Function functions = function;
-  public static Function parameters_opc = function;
-  public static Function parameters = functions;
-  public static Parameters_2 parameters_2 = new Parameters_2();
-  public static Assigment arguments_opc = expression;
-  public static Assigment arguments = expression;
-  public static Parameters_2 arguments_2 = parameters_2;
+import mx.ipn.escom.compiladores.TipoToken;
 
+public class Primeros {
+  public static NoTerminal primary = new NoTerminal();
+  public static NoTerminal call = primary;
+  public static NoTerminal call_opc = call;
+  public static NoTerminal call_2 = new NoTerminal();
+  public static NoTerminal unary = new NoTerminal();
+  public static NoTerminal factor_2 = new NoTerminal();
+  public static NoTerminal factor = unary;
+  public static NoTerminal term_2 = new NoTerminal();
+  public static NoTerminal term = factor;
+  public static NoTerminal comparison_2 = new NoTerminal();
+  public static NoTerminal comparison = term;
+  public static NoTerminal equality_2 = new NoTerminal();
+  public static NoTerminal equality = comparison;
+  public static NoTerminal logic_and_2 = new NoTerminal();
+  public static NoTerminal logic_and = equality;
+  public static NoTerminal logic_or_2 = new NoTerminal();
+  public static NoTerminal logic_or = logic_and;
+  public static NoTerminal assigment_2 = new NoTerminal();
+  public static NoTerminal aux = new NoTerminal();
+  public static NoTerminal call_3 = new NoTerminal();
+  public static NoTerminal assigment = new NoTerminal();
+  public static NoTerminal expression = assigment;
+  public static NoTerminal statement = new NoTerminal();
+  public static NoTerminal expr_stmt = expression;
+  public static NoTerminal for_stmt = new NoTerminal();
+  public static NoTerminal var_decl = new NoTerminal();
+  public static NoTerminal for_stmt_1 = new NoTerminal();
+  public static NoTerminal for_stmt_2 = new NoTerminal();
+  public static NoTerminal for_stmt_3 = expression;
+  public static NoTerminal if_stmt = new NoTerminal();
+  public static NoTerminal else_stmt = new NoTerminal();
+  public static NoTerminal print_stmt = new NoTerminal();
+  public static NoTerminal return_stmt = new NoTerminal();
+  public static NoTerminal return_exp_opc = expression;
+  public static NoTerminal while_stmt = new NoTerminal();
+  public static NoTerminal block = new NoTerminal();
+  public static NoTerminal var_init = new NoTerminal();
+  public static NoTerminal fun_decl = new NoTerminal();
+  public static NoTerminal class_inher = new NoTerminal();
+  public static NoTerminal class_decl = new NoTerminal();
+  public static NoTerminal declaration = new NoTerminal();
+  public static NoTerminal block_decl = declaration;
+  public static NoTerminal function = new NoTerminal();
+  public static NoTerminal functions = function;
+  public static NoTerminal parameters_opc = function;
+  public static NoTerminal parameters = functions;
+  public static NoTerminal parameters_2 = new NoTerminal();
+  public static NoTerminal arguments_opc = expression;
+  public static NoTerminal arguments = expression;
+  public static NoTerminal arguments_2 = parameters_2;
+
+  static {
+    primary.primeros.add(TipoToken.SUPER);
+    primary.primeros.add(TipoToken.PAREN_IZQ);
+    primary.primeros.add(TipoToken.IDENTIFICADOR);
+    primary.primeros.add(TipoToken.CADENA);
+    primary.primeros.add(TipoToken.NUMERO);
+    primary.primeros.add(TipoToken.ESTE);
+    primary.primeros.add(TipoToken.NULO);
+    primary.primeros.add(TipoToken.FALSO);
+    primary.primeros.add(TipoToken.VERDADERO);
+
+    call_2.primeros.add(TipoToken.PAREN_IZQ);
+    call_2.primeros.add(TipoToken.PUNTO);
+
+    unary.primeros.addAll(primary.primeros);
+    unary.primeros.add(TipoToken.NO);
+    unary.primeros.add(TipoToken.MENOS);
+
+    factor_2.primeros.add(TipoToken.DIAGONAL);
+    factor_2.primeros.add(TipoToken.ASTERISCO);
+
+    term_2.primeros.add(TipoToken.MENOS);
+    term_2.primeros.add(TipoToken.MAS);
+
+    comparison_2.primeros.add(TipoToken.MAYOR);
+    comparison_2.primeros.add(TipoToken.MAYOR_EQ);
+    comparison_2.primeros.add(TipoToken.MENOR);
+    comparison_2.primeros.add(TipoToken.MENOR_EQ);
+
+    equality_2.primeros.add(TipoToken.NOT_EQ);
+    equality_2.primeros.add(TipoToken.COMPARACION);
+
+    logic_and_2.primeros.add(TipoToken.Y);
+
+    logic_or_2.primeros.add(TipoToken.O);
+
+    assigment_2.primeros.add(TipoToken.PUNTO);
+
+    aux.primeros.add(TipoToken.IGUAL);
+    aux.primeros.addAll(assigment_2.primeros);
+
+    call_3.primeros.addAll(primary.primeros);
+    call_3.primeros.remove(TipoToken.IDENTIFICADOR);
+
+    assigment.primeros.add(TipoToken.NO);
+    assigment.primeros.add(TipoToken.MENOS);
+    assigment.primeros.add(TipoToken.IDENTIFICADOR);
+    assigment.primeros.addAll(call_3.primeros);
+
+    for_stmt.primeros.add(TipoToken.PARA);
+
+    if_stmt.primeros.add(TipoToken.SI);
+
+    print_stmt.primeros.add(TipoToken.IMPRIMIR);
+
+    return_stmt.primeros.add(TipoToken.RETORNAR);
+
+    while_stmt.primeros.add(TipoToken.MIENTRAS);
+
+    block.primeros.add(TipoToken.LLAVE_IZQ);
+
+    else_stmt.primeros.add(TipoToken.SI_NO);
+
+    var_init.primeros.add(TipoToken.IGUAL);
+
+    fun_decl.primeros.add(TipoToken.FUNCION);
+
+    class_inher.primeros.add(TipoToken.MENOR);
+
+    class_decl.primeros.add(TipoToken.CLASE);
+
+    var_decl.primeros.add(TipoToken.VARIABLE);
+
+    function.primeros.add(TipoToken.IDENTIFICADOR);
+
+    parameters_2.primeros.add(TipoToken.COMA);
+
+    statement.primeros.addAll(assigment.primeros);
+    statement.primeros.addAll(for_stmt.primeros);
+    statement.primeros.addAll(if_stmt.primeros);
+    statement.primeros.addAll(print_stmt.primeros);
+    statement.primeros.addAll(return_stmt.primeros);
+    statement.primeros.addAll(while_stmt.primeros);
+    statement.primeros.addAll(block.primeros);
+
+    for_stmt_1.primeros.addAll(var_decl.primeros);
+    for_stmt_1.primeros.addAll(expr_stmt.primeros);
+    for_stmt_1.primeros.add(TipoToken.PUTO_COMA);
+
+    for_stmt_2.primeros.addAll(expression.primeros);
+    for_stmt_2.primeros.add(TipoToken.PUTO_COMA);
+
+    declaration.primeros.addAll(class_decl.primeros);
+    declaration.primeros.addAll(fun_decl.primeros);
+    declaration.primeros.addAll(var_decl.primeros);
+    declaration.primeros.addAll(statement.primeros);
+  }
 }

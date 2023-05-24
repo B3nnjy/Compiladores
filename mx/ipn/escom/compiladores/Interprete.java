@@ -1,5 +1,7 @@
 package mx.ipn.escom.compiladores;
 
+import mx.ipn.escom.compiladores.primeros.Primeros;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -47,13 +49,14 @@ public class Interprete {
     }
 
     private static void ejecutar(String source){
-        Scanner scanner = new Scanner(source);
-        List<Token> tokens = scanner.scanTokens();
-
-        //for(Token token : tokens){
-            //System.out.println(token);
-        //}
-        Parser parser = new Parser(tokens);
+//        Scanner scanner = new Scanner(source);
+//        List<Token> tokens = scanner.scanTokens();
+//
+//        for(Token token : tokens){
+//            System.out.println(token);
+//        }
+//        Parser parser = new Parser(tokens);
+      Primeros.unary.show();
     }
 
     /*

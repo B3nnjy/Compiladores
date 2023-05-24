@@ -1,7 +1,5 @@
 package mx.ipn.escom.compiladores;
 
-import mx.ipn.escom.compiladores.primeros.Class_inher;
-import mx.ipn.escom.compiladores.primeros.Parameters_2;
 import mx.ipn.escom.compiladores.primeros.Primeros;
 
 import java.util.List;
