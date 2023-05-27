@@ -45,6 +45,7 @@ public class Interprete {
             if(linea == null) break; // Presionar Ctrl + D
             ejecutar(linea + '\0');
             existenErrores = false;
+            System.out.println();
         }
     }
 
@@ -52,11 +53,11 @@ public class Interprete {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
 
-        for(Token token : tokens){
-            System.out.println(token);
-        }
         Parser parser = new Parser(tokens);
-        parser.parser();
+
+        if (!existenErrores){
+            parser.parser();
+        }
     }
 
     /*
@@ -70,9 +71,7 @@ public class Interprete {
     }
 
     private static void reportar(int linea, String donde, String mensaje){
-        System.err.println(
-                "[linea " + linea + "] Error " + donde + ": " + mensaje
-        );
         existenErrores = true;
+        System.err.println("[linea " + linea + "] Error " + donde + ": " + mensaje);
     }
 }
