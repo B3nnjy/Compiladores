@@ -49,14 +49,14 @@ public class Interprete {
     }
 
     private static void ejecutar(String source){
-//        Scanner scanner = new Scanner(source);
-//        List<Token> tokens = scanner.scanTokens();
-//
-//        for(Token token : tokens){
-//            System.out.println(token);
-//        }
-//        Parser parser = new Parser(tokens);
-      Primeros.unary.show();
+        Scanner scanner = new Scanner(source);
+        List<Token> tokens = scanner.scanTokens();
+
+        for(Token token : tokens){
+            System.out.println(token);
+        }
+        Parser parser = new Parser(tokens);
+        parser.parser();
     }
 
     /*

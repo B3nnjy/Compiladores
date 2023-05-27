@@ -21,11 +21,12 @@ public class Parser {
 
         if(!hayErrores && !preanalisis.equals(TipoToken.EOF)){
             Declaration();
-        } else if(!hayErrores && preanalisis.equals(TipoToken.EOF)){
+        }
+        if(!hayErrores && preanalisis.equals(TipoToken.EOF)){
             System.out.println("Consulta válida");
         }
 
-        System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". No se esperaba el token " + preanalisis.tipo);
+        //System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". No se esperaba el token " + preanalisis.tipo);
 
         /*if(!preanalisis.equals(finCadena)){
             System.out.println("Error en la posición " + preanalisis.posicion + ". No se esperaba el token " + preanalisis.tipo);
@@ -34,6 +35,11 @@ public class Parser {
         }*/
     }
 
+    public void Program(){
+        if (Primeros.declaration.find(preanalisis.tipo)){
+            Declaration();
+        }
+    }
     public void Declaration(){
         if (Primeros.class_decl.find(preanalisis.tipo)){
             Class_decl();
@@ -43,8 +49,6 @@ public class Parser {
             Var_decl();
         } else if (Primeros.statement.find(preanalisis.tipo)) {
             Statement();
-        }else{
-            Error(Primeros.declaration.getPrimeros());
         }
     }
 
@@ -65,6 +69,8 @@ public class Parser {
         if (preanalisis.equals(TipoToken.FUNCION)){
             coincidir(TipoToken.FUNCION);
             Function();
+        }else {
+            Error(TipoToken.FUNCION);
         }
     }
 
@@ -73,10 +79,27 @@ public class Parser {
             coincidir(TipoToken.VARIABLE);
             coincidir(TipoToken.IDENTIFICADOR);
             Var_init();
+        }else {
+            Error(TipoToken.VARIABLE);
         }
     }
 
     public void Statement(){
+        if (Primeros.expr_stmt.find(preanalisis.tipo)){
+            Expr_stmt();
+        } else if (Primeros.for_stmt.find(preanalisis.tipo)) {
+            For_stmt();
+        } else if (Primeros.if_stmt.find(preanalisis.tipo)) {
+            If_stmt();
+        } else if (Primeros.print_stmt.find(preanalisis.tipo)) {
+            Print_stmt();
+        } else if (Primeros.return_stmt.find(preanalisis.tipo)) {
+            Return_stmt();
+        } else if (Primeros.while_stmt.find(preanalisis.tipo)) {
+            While_stmt();
+        } else if (Primeros.block.find(preanalisis.tipo)) {
+            Block();
+        }
 
     }
 
@@ -94,60 +117,21 @@ public class Parser {
     }
 
     private void Assignment() {
-        if (preanalisis.equals(TipoToken.NO)){
-            coincidir(TipoToken.NO);
-            Unary();
-        } else if (preanalisis.equals(TipoToken.MENOS)) {
-            coincidir(TipoToken.MENOS);
-            Unary();
-        } else if (preanalisis.equals(TipoToken.IDENTIFICADOR)) {
-            coincidir(TipoToken.IDENTIFICADOR);
-            Aux();
-        } else if (Primeros.call_3.find(preanalisis.tipo)) {
-            Call_3();
+        if (Primeros.logic_or.find(preanalisis.tipo)){
+            Logic_or();
             Assignment_2();
         }
     }
 
     private void Assignment_2(){
-        if (preanalisis.equals(TipoToken.PUNTO)){
-            coincidir(TipoToken.PUNTO);
-            coincidir(TipoToken.IDENTIFICADOR);
-            coincidir(TipoToken.IGUAL);
-            Assignment();
-        }
-    }
-
-    private void Call_3(){
-        if (preanalisis.equals(TipoToken.VERDADERO)){
-            coincidir(TipoToken.VERDADERO);
-        } else if (preanalisis.equals(TipoToken.FALSO)) {
-            coincidir(TipoToken.FALSO);
-        } else if (preanalisis.equals(TipoToken.NULO)) {
-            coincidir(TipoToken.NULO);
-        } else if (preanalisis.equals(TipoToken.ESTE)) {
-            coincidir(TipoToken.ESTE);
-        } else if (preanalisis.equals(TipoToken.NUMERO)) {
-            coincidir(TipoToken.NUMERO);
-        } else if (preanalisis.equals(TipoToken.CADENA)) {
-            coincidir(TipoToken.CADENA);
-        } else if (preanalisis.equals(TipoToken.PAREN_IZQ)) {
-            coincidir(TipoToken.PAREN_IZQ);
-        } else if (preanalisis.equals(TipoToken.SUPER)){
-            coincidir(TipoToken.SUPER);
-        } else if (preanalisis.equals(TipoToken.IGUAL)) {
-            coincidir(TipoToken.IGUAL);
-        }
-    }
-
-    private void Aux(){
         if (preanalisis.equals(TipoToken.IGUAL)){
             coincidir(TipoToken.IGUAL);
-            Assignment();
-        } else if (Primeros.assigment_2.find(preanalisis.tipo)) {
-            Assignment_2();
+            Expression();
         }
     }
+
+
+
 
     private void Logic_or() {
         if (Primeros.logic_and.find(preanalisis.tipo)){
@@ -225,8 +209,8 @@ public class Parser {
     }
 
     private void Term_2() {
-        if (preanalisis.equals(TipoToken.MENOR)){
-            coincidir(TipoToken.MENOR);
+        if (preanalisis.equals(TipoToken.MENOS)){
+            coincidir(TipoToken.MENOS);
             Factor();
             Term_2();
         } else if (preanalisis.equals(TipoToken.MAS)) {
@@ -257,6 +241,7 @@ public class Parser {
     private void Expr_stmt(){
         if (Primeros.expression.find(preanalisis.tipo)){
             Expression();
+            coincidir(TipoToken.PUNTO_COMA);
         }
     }
 
@@ -268,6 +253,24 @@ public class Parser {
             For_stmt_2();
             For_stmt_3();
             coincidir(TipoToken.PAREN_DER);
+            Statement();
+        }
+    }
+
+    public void If_stmt(){
+        if (preanalisis.equals(TipoToken.SI)){
+            coincidir(TipoToken.SI);
+            coincidir(TipoToken.PAREN_IZQ);
+            Expression();
+            coincidir(TipoToken.PAREN_DER);
+            Statement();
+            Else_statement();
+        }
+    }
+
+    private void Else_statement() {
+        if (preanalisis.equals(TipoToken.SI_NO)){
+            coincidir(TipoToken.SI_NO);
             Statement();
         }
     }
@@ -297,12 +300,44 @@ public class Parser {
         }
     }
 
+    public void Print_stmt(){
+        if (preanalisis.equals(TipoToken.IMPRIMIR)){
+            coincidir(TipoToken.IMPRIMIR);
+            Expression();
+            coincidir(TipoToken.PUNTO_COMA);
+        }
+    }
+
+    public void Return_stmt(){
+        if (preanalisis.equals(TipoToken.RETORNAR)){
+            coincidir(TipoToken.RETORNAR);
+            Return_exp_opc();
+            coincidir(TipoToken.PUNTO_COMA);
+        }
+    }
+
+    private void Return_exp_opc() {
+        if (Primeros.expression.find(preanalisis.tipo)){
+            Expression();
+        }
+    }
+
+    private void While_stmt(){
+        if (preanalisis.equals(TipoToken.MIENTRAS)){
+            coincidir(TipoToken.MIENTRAS);
+            coincidir(TipoToken.PAREN_IZQ);
+            Expression();
+            coincidir(TipoToken.PAREN_DER);
+            Statement();
+        }
+    }
+
     private void Unary() {
         if (preanalisis.equals(TipoToken.NO)){
-            coincidir(preanalisis.tipo);
+            coincidir(TipoToken.NO);
             Unary();
         } else if (preanalisis.equals(TipoToken.MENOS)) {
-            coincidir(preanalisis.tipo);
+            coincidir(TipoToken.MENOS);
             Unary();
         } else if (Primeros.call.find(preanalisis.tipo)) {
             Call();
@@ -312,20 +347,34 @@ public class Parser {
     private void Logic_and_2() {
         if (preanalisis.equals(TipoToken.Y)){
             coincidir(TipoToken.Y);
-            Logic_and();
-            Logic_or_2();
-        }
-    }
-
-    private void Call_opc() {
-        if (Primeros.call.find(preanalisis.tipo)){
-            Call();
+            Equality();
+            Logic_and_2();
         }
     }
 
     private void Call() {
         if (Primeros.primary.find(preanalisis.tipo)){
             Primary();
+            Call_2();
+        }
+    }
+
+    private void Call_2() {
+        if (preanalisis.equals(TipoToken.PAREN_IZQ)){
+            coincidir(TipoToken.PAREN_IZQ);
+            Arguments_opc();
+            coincidir(TipoToken.PAREN_DER);
+            Call_2();
+        } else if (preanalisis.equals(TipoToken.PUNTO)) {
+            coincidir(TipoToken.PUNTO);
+            coincidir(TipoToken.IDENTIFICADOR);
+            Call_2();
+        }
+    }
+    private void Call_opc() {
+        if (Primeros.call.find(preanalisis.tipo)){
+            Call();
+            coincidir(TipoToken.PUNTO);
         }
     }
 
@@ -398,6 +447,27 @@ public class Parser {
             coincidir(TipoToken.COMA);
             coincidir(TipoToken.IDENTIFICADOR);
             Parameters_2();
+        }
+    }
+
+    private void Arguments_opc() {
+        if (Primeros.arguments.find(preanalisis.tipo)){
+            Arguments();
+        }
+    }
+
+    private void Arguments() {
+        if (Primeros.expression.find(preanalisis.tipo)){
+            Expression();
+            Arguments_2();
+        }
+    }
+
+    private void Arguments_2() {
+        if (preanalisis.equals(TipoToken.COMA)){
+            coincidir(TipoToken.COMA);
+            Expression();
+            Arguments_2();
         }
     }
 

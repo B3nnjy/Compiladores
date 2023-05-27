@@ -16,7 +16,7 @@ public class simbolos {
     simbolos.put("}", TipoToken.LLAVE_DER);
     simbolos.put(",", TipoToken.COMA);
     simbolos.put(".", TipoToken.PUNTO);
-    simbolos.put(";", TipoToken.PUTO_COMA);
+    simbolos.put(";", TipoToken.PUNTO_COMA);
     simbolos.put("-", TipoToken.MENOS);
     simbolos.put("+", TipoToken.MAS);
     simbolos.put("*", TipoToken.ASTERISCO);

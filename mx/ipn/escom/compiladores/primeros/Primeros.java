@@ -21,9 +21,7 @@ public class Primeros {
   public static NoTerminal logic_or_2 = new NoTerminal();
   public static NoTerminal logic_or = logic_and;
   public static NoTerminal assigment_2 = new NoTerminal();
-  public static NoTerminal aux = new NoTerminal();
-  public static NoTerminal call_3 = new NoTerminal();
-  public static NoTerminal assigment = new NoTerminal();
+  public static NoTerminal assigment = logic_or;
   public static NoTerminal expression = assigment;
   public static NoTerminal statement = new NoTerminal();
   public static NoTerminal expr_stmt = expression;
@@ -90,18 +88,7 @@ public class Primeros {
 
     logic_or_2.primeros.add(TipoToken.O);
 
-    assigment_2.primeros.add(TipoToken.PUNTO);
-
-    aux.primeros.add(TipoToken.IGUAL);
-    aux.primeros.addAll(assigment_2.primeros);
-
-    call_3.primeros.addAll(primary.primeros);
-    call_3.primeros.remove(TipoToken.IDENTIFICADOR);
-
-    assigment.primeros.add(TipoToken.NO);
-    assigment.primeros.add(TipoToken.MENOS);
-    assigment.primeros.add(TipoToken.IDENTIFICADOR);
-    assigment.primeros.addAll(call_3.primeros);
+    assigment_2.primeros.add(TipoToken.IGUAL);
 
     for_stmt.primeros.add(TipoToken.PARA);
 
