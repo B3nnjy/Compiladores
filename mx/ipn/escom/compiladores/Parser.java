@@ -20,7 +20,7 @@ public class Parser {
         preanalisis = tokens.get(i);
 
         if(!hayErrores && !preanalisis.equals(TipoToken.EOF)){
-            Declaration();
+            Program();
         }
         if(!hayErrores && preanalisis.equals(TipoToken.EOF)){
             System.out.println("Consulta válida");
@@ -38,6 +38,8 @@ public class Parser {
     public void Program(){
         if (Primeros.declaration.find(preanalisis.tipo)){
             Declaration();
+        } else {
+            Error(Primeros.declaration.getPrimeros());
         }
     }
     public void Declaration(){
@@ -79,6 +81,7 @@ public class Parser {
             coincidir(TipoToken.VARIABLE);
             coincidir(TipoToken.IDENTIFICADOR);
             Var_init();
+            coincidir(TipoToken.PUNTO_COMA);
         }else {
             Error(TipoToken.VARIABLE);
         }

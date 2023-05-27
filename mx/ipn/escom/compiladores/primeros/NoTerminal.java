@@ -10,8 +10,12 @@ public class NoTerminal {
     protected NoTerminal(){}
 
     public boolean find(TipoToken t){
-        int i = primeros.indexOf(t);
-        return i > 0;
+        for (TipoToken i: primeros) {
+            if (t == i){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void show(){
