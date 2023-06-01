@@ -516,15 +516,7 @@ public class Parser {
             Call_2();
         }
     }
-
-    private void Call_opc() {
-        if (hayErrores) return;
-
-        if (Primeros.call.find(preanalisis.tipo)){
-            Call();
-            coincidir(TipoToken.PUNTO);
-        }
-    }
+    
 
     private void Primary() {
         if (hayErrores) return;

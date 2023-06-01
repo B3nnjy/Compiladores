@@ -5,7 +5,6 @@ import mx.ipn.escom.compiladores.TipoToken;
 public class Primeros {
   public static NoTerminal primary = new NoTerminal();
   public static NoTerminal call = primary;
-  public static NoTerminal call_opc = call;
   public static NoTerminal call_2 = new NoTerminal();
   public static NoTerminal unary = new NoTerminal();
   public static NoTerminal factor_2 = new NoTerminal();
