@@ -53,9 +53,14 @@ public class Interprete {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
 
+        for(Token t : tokens){
+            System.out.println(t.toString());
+        }
+
         Parser parser = new Parser(tokens);
 
         if (!existenErrores){
+
             parser.parser();
         }
     }

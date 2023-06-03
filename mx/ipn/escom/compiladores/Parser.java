@@ -445,6 +445,7 @@ public class Parser {
             Factor();
             Term_2();
         } else if (preanalisis.equals(TipoToken.MAS)) {
+            coincidir(TipoToken.MAS);
             Factor();
             Term_2();
         }
