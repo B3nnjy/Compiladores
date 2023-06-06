@@ -1,6 +1,6 @@
 package mx.ipn.escom.compiladores;
 
-import mx.ipn.escom.compiladores.asd.Parser;
+import mx.ipn.escom.compiladores.asa.Parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,6 +45,7 @@ public class Interprete {
             if(linea == null) break; // Presionar Ctrl + D
             ejecutar(linea + '\0');
             existenErrores = false;
+            System.out.println('\n');
         }
     }
 
@@ -54,13 +55,13 @@ public class Interprete {
 
         Parser analisis = new Parser(tokens);
 
-
         if (!existenErrores){
-            if (!analisis.Validar()){
-                /*for(Token token : tokens){
+            analisis.parser();
+            /*if (!analisis.Validar()){
+                for(Token token : tokens){
                     System.out.println(token);
-                }*/
-            }
+                }
+            }*/
         }
     }
 
