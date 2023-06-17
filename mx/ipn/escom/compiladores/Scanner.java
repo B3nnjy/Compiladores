@@ -132,7 +132,7 @@ public class Scanner {
                     col--;
                     break;
                 case 20:
-                    lexema = source.substring(iLexema, fLexema);
+                    lexema = source.substring(iLexema + 1, fLexema);
                     tokens.add(new Token(TipoToken.NUMERO, lexema, Integer.parseInt(lexema), linea, col));
                     iLexema = fLexema;
                     estado = 0;

@@ -15,7 +15,7 @@ public class Parser {
         this.tokens = tokens;
     }
 
-    public void parser(){
+    public boolean parser(){
         i = 0;
         preanalisis = tokens.get(i);
 
@@ -23,10 +23,14 @@ public class Parser {
             Program();
             if(!hayErrores && preanalisis.equals(TipoToken.EOF)){
                 System.out.println("Consulta válida");
+                return true;
             }else {
                 Error(preanalisis.tipo);
+                return false;
             }
         }
+
+        return false;
 
 
         //System.out.println("Error en la linea " + preanalisis.linea + " posicion " + preanalisis.col + ". No se esperaba el token " + preanalisis.tipo);

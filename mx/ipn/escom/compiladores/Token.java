@@ -20,8 +20,75 @@ public class Token {
         return tipo + " " + lexema + " " + literal;
     }
 
-
     public boolean equals(TipoToken tipo){
         return this.tipo == tipo;
     }
+
+    public boolean esOperando(){
+        switch (this.tipo){
+            case IDENTIFICADOR, NUMERO -> {return true;}
+            default -> {return false;}
+        }
+    }
+
+    public boolean esOperador(){
+        switch (this.tipo){
+            case MAS, MENOS, ASTERISCO, DIAGONAL, IGUAL, MAYOR, MAYOR_EQ -> {return true;}
+            default -> {return false;}
+        }
+    }
+
+    public boolean esPalabraReservada(){
+        if (PalabrasReservadas.palabrasReservadas.containsValue(this.tipo)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean esEstructuraDeControl(){
+        switch (this.tipo){
+            case SI:
+            case SI_NO:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean precedenciaMayorIgual(Token t){
+        return this.obtenerPrecedencia() >= t.obtenerPrecedencia();
+    }
+
+    private int obtenerPrecedencia(){
+        switch (this.tipo){
+            case ASTERISCO:
+            case DIAGONAL:
+                return 3;
+            case MAS:
+            case MENOS:
+                return 2;
+            case IGUAL:
+                return 1;
+            case MAYOR:
+            case MAYOR_EQ:
+                return 1;
+        }
+
+        return 0;
+    }
+
+    public int aridad(){
+        switch (this.tipo) {
+            case ASTERISCO:
+            case DIAGONAL:
+            case MAS:
+            case MENOS:
+            case IGUAL:
+            case MAYOR:
+            case MAYOR_EQ:
+                return 2;
+        }
+        return 0;
+    }
+
 }
