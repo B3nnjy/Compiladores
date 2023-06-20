@@ -26,14 +26,14 @@ public class Token {
 
     public boolean esOperando(){
         switch (this.tipo){
-            case IDENTIFICADOR, NUMERO -> {return true;}
+            case IDENTIFICADOR, NUMERO, CADENA -> {return true;}
             default -> {return false;}
         }
     }
 
     public boolean esOperador(){
         switch (this.tipo){
-            case MAS, MENOS, ASTERISCO, DIAGONAL, IGUAL, MAYOR, MAYOR_EQ -> {return true;}
+            case MAS, MENOS, ASTERISCO, DIAGONAL, IGUAL, NO, COMPARACION, MAYOR, MAYOR_EQ, MENOR, MENOR_EQ,NOT_EQ -> {return true;}
             default -> {return false;}
         }
     }
@@ -49,6 +49,8 @@ public class Token {
         switch (this.tipo){
             case SI:
             case SI_NO:
+            case MIENTRAS:
+            case PARA:
                 return true;
             default:
                 return false;
