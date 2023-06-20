@@ -63,6 +63,8 @@ public class Token {
 
     private int obtenerPrecedencia(){
         switch (this.tipo){
+            case PUNTO:
+                return 4;
             case ASTERISCO:
             case DIAGONAL:
                 return 3;
@@ -70,9 +72,11 @@ public class Token {
             case MENOS:
                 return 2;
             case IGUAL:
-                return 1;
             case MAYOR:
             case MAYOR_EQ:
+            case MENOR:
+            case MENOR_EQ:
+            case NOT_EQ:
                 return 1;
         }
 
@@ -88,7 +92,12 @@ public class Token {
             case IGUAL:
             case MAYOR:
             case MAYOR_EQ:
+            case COMPARACION:
+            case MENOR:
+            case MENOR_EQ:
                 return 2;
+            case NO:
+                return 1;
         }
         return 0;
     }
