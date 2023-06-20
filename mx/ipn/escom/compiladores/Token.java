@@ -33,7 +33,7 @@ public class Token {
 
     public boolean esOperador(){
         switch (this.tipo){
-            case MAS, MENOS, ASTERISCO, DIAGONAL, IGUAL, NO, COMPARACION, MAYOR, MAYOR_EQ, MENOR, MENOR_EQ,NOT_EQ -> {return true;}
+            case MAS, MENOS, ASTERISCO, DIAGONAL, IGUAL, NO, COMPARACION, MAYOR, MAYOR_EQ, MENOR, MENOR_EQ,NOT_EQ, Y, O -> {return true;}
             default -> {return false;}
         }
     }
@@ -95,6 +95,8 @@ public class Token {
             case COMPARACION:
             case MENOR:
             case MENOR_EQ:
+            case Y:
+            case O:
                 return 2;
             case NO:
                 return 1;
