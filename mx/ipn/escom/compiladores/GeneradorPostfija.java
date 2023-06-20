@@ -6,9 +6,9 @@ import java.util.Stack;
 
 public class GeneradorPostfija {
 
-    private final List<Token> infija;
-    private final Stack<Token> pila;
-    private final List<Token> postfija;
+    private final List<Token> infija; //Expresiones en forma infija
+    private final Stack<Token> pila; //pila para almacenar temporalmente operadores
+    private final List<Token> postfija; //Expresiones en forma postfija
 
     public GeneradorPostfija(List<Token> infija) {
         this.infija = infija;
@@ -45,6 +45,8 @@ public class GeneradorPostfija {
                 pila.push(t);
             }
             else if(t.tipo == TipoToken.PAREN_DER){
+                // se sacan los operadores de la pila pila y se agregan a la lista postfija
+                // hasta encontrar el paréntesis izquierdo
                 while(!pila.isEmpty() && pila.peek().tipo != TipoToken.PAREN_IZQ){
                     Token temp = pila.pop();
                     postfija.add(temp);
