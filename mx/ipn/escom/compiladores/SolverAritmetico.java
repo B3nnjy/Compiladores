@@ -14,7 +14,7 @@ public class SolverAritmetico {
     private Object resolver(Nodo n){
         // No tiene hijos, es un operando
         if(n.getHijos() == null){
-            if(n.getValue().tipo == TipoToken.NUMERO || n.getValue().tipo == TipoToken.CADENA){
+            if(n.getValue().tipo == TipoToken.NUMERO || n.getValue().tipo == TipoToken.CADENA) {
                 return n.getValue().literal;
             }
             else if(n.getValue().tipo == TipoToken.IDENTIFICADOR){
@@ -25,6 +25,7 @@ public class SolverAritmetico {
         // Por simplicidad se asume que la lista de hijos del nodo tiene dos elementos
         Nodo izq = n.getHijos().get(0);
         Nodo der = n.getHijos().get(1);
+
 
         Object resultadoIzquierdo = resolver(izq);
         Object resultadoDerecho = resolver(der);
@@ -39,6 +40,22 @@ public class SolverAritmetico {
                     return ((Double)resultadoIzquierdo * (Double) resultadoDerecho);
                 case DIAGONAL:
                     return ((Double)resultadoIzquierdo / (Double) resultadoDerecho);
+                case MENOR:
+                    return ((Double)resultadoIzquierdo < (Double) resultadoDerecho);
+                case MENOR_EQ:
+                    return ((Double)resultadoIzquierdo <= (Double) resultadoDerecho);
+                case MAYOR:
+                    return ((Double)resultadoIzquierdo > (Double) resultadoDerecho);
+                case MAYOR_EQ:
+                    return ((Double)resultadoIzquierdo >= (Double) resultadoDerecho);
+                case COMPARACION:
+                    return ((Double)resultadoIzquierdo == (Double) resultadoDerecho);
+                case NOT_EQ:
+                    return ((Double)resultadoIzquierdo != (Double) resultadoDerecho);
+                case Y:
+                    return ((Boolean)resultadoIzquierdo && (Boolean) resultadoDerecho);
+                case O:
+                    return ((Boolean)resultadoIzquierdo || (Boolean) resultadoDerecho);
             }
         }
         else if(resultadoIzquierdo instanceof String && resultadoDerecho instanceof String){
