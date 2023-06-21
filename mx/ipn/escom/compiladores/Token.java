@@ -26,7 +26,7 @@ public class Token {
 
     public boolean esOperando(){
         switch (this.tipo){
-            case IDENTIFICADOR, NUMERO, CADENA -> {return true;}
+            case IDENTIFICADOR, NUMERO, CADENA, VERDADERO, FALSO -> {return true;}
             default -> {return false;}
         }
     }

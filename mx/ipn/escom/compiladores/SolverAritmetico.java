@@ -12,6 +12,7 @@ public class SolverAritmetico {
         return resolver(nodo);
     }
     private Object resolver(Nodo n){
+        //TablaSimbolos tabla = new TablaSimbolos();
         // No tiene hijos, es un operando
         if(n.getHijos() == null){
             if(n.getValue().tipo == TipoToken.NUMERO || n.getValue().tipo == TipoToken.CADENA) {
@@ -19,6 +20,13 @@ public class SolverAritmetico {
             }
             else if(n.getValue().tipo == TipoToken.IDENTIFICADOR){
                 // Ver la tabla de símbolos
+                if(TablaSimbolos.existeIdentificador(n.getValue().lexema)){
+                    return TablaSimbolos.obtener(n.getValue().lexema);
+                }
+            } else if (n.getValue().tipo == TipoToken.FALSO) {
+                return false;
+            } else if (n.getValue().tipo == TipoToken.VERDADERO) {
+                return true;
             }
         }
 
@@ -30,7 +38,15 @@ public class SolverAritmetico {
         Object resultadoIzquierdo = resolver(izq);
         Object resultadoDerecho = resolver(der);
 
-        if(resultadoIzquierdo instanceof Double && resultadoDerecho instanceof Double){
+
+        if (resultadoIzquierdo instanceof Boolean && resultadoDerecho instanceof Boolean){
+            switch (n.getValue().tipo){
+                case Y:
+                    return ((Boolean)resultadoIzquierdo && (Boolean) resultadoDerecho);
+                case O:
+                    return ((Boolean)resultadoIzquierdo || (Boolean) resultadoDerecho);
+            }
+        }else if(resultadoIzquierdo instanceof Double && resultadoDerecho instanceof Double){
             switch (n.getValue().tipo){
                 case MAS:
                     return ((Double)resultadoIzquierdo + (Double) resultadoDerecho);
@@ -52,15 +68,13 @@ public class SolverAritmetico {
                     return ((Double)resultadoIzquierdo == (Double) resultadoDerecho);
                 case NOT_EQ:
                     return ((Double)resultadoIzquierdo != (Double) resultadoDerecho);
-                case Y:
-                    return ((Boolean)resultadoIzquierdo && (Boolean) resultadoDerecho);
-                case O:
-                    return ((Boolean)resultadoIzquierdo || (Boolean) resultadoDerecho);
+
             }
         }
         else if(resultadoIzquierdo instanceof String && resultadoDerecho instanceof String){
             if (n.getValue().tipo == TipoToken.MAS){
                 // Ejecutar la concatenación
+                return (String)resultadoIzquierdo + (String) resultadoDerecho;
             }
         }
         else{
