@@ -123,8 +123,8 @@ public class Scanner {
                     int E = lexema.indexOf('E');
                     String entero = lexema.substring(0, E);
                     String potencia = lexema.substring(E+1);
-                    float enteroP = Float.parseFloat(entero);
-                    int pow = Integer.parseInt(potencia);
+                    Double enteroP = Double.parseDouble(entero);
+                    Double pow = Double.parseDouble(potencia);
                     tokens.add(new Token(TipoToken.NUMERO, lexema, enteroP*(Math.pow(10, pow)), linea, col));
                     iLexema = fLexema;
                     estado = 0;
@@ -132,8 +132,8 @@ public class Scanner {
                     col--;
                     break;
                 case 20:
-                    lexema = source.substring(iLexema + 1, fLexema);
-                    tokens.add(new Token(TipoToken.NUMERO, lexema, Integer.parseInt(lexema), linea, col));
+                    lexema = source.substring(iLexema, fLexema);
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, Double.parseDouble(lexema), linea, col));
                     iLexema = fLexema;
                     estado = 0;
                     i--;
@@ -141,7 +141,7 @@ public class Scanner {
                     break;
                 case 21:
                     lexema = source.substring(iLexema, fLexema);
-                    tokens.add(new Token(TipoToken.NUMERO, lexema, Float.parseFloat(lexema), linea, col));
+                    tokens.add(new Token(TipoToken.NUMERO, lexema, Double.parseDouble(lexema), linea, col));
                     iLexema = fLexema;
                     estado = 0;
                     i--;

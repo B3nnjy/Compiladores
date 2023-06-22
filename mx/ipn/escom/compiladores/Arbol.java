@@ -30,8 +30,18 @@ public class Arbol {
                     System.out.println(res);
                     break;
                 case VARIABLE:
-                    if (!TablaSimbolos.existeIdentificador(t.lexema)){
-                        TablaSimbolos.asignar();
+                    if (!TablaSimbolos.existeIdentificador(n.getHijos().get(0).getValue().lexema)){
+                        if (n.getHijos().size() == 2){
+                            Nodo derecho = n.getHijos().get(1);
+
+                            SolverAritmetico solverAritmetico =  new SolverAritmetico(derecho);
+                            Object res_derecho = solverAritmetico.resolver();
+
+
+                            TablaSimbolos.asignar(n.getHijos().get(0).getValue().lexema, res_derecho);
+                        } else{
+                            TablaSimbolos.asignar(n.getHijos().get(0).getValue().lexema, null);
+                        }
                     }
                     // Crear una variable. Usar tabla de simbolos
                     break;

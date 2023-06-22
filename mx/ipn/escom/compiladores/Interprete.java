@@ -64,6 +64,9 @@ public class Interprete {
                 GeneradorPostfija postfija = new GeneradorPostfija(tokens);
                 List<Token> listaPos = postfija.convertir();
                 System.out.println(listaPos.toString());
+                GeneradorAST generador = new GeneradorAST(listaPos);
+                Arbol raiz = generador.generarAST();
+                raiz.recorrer();
             }
         }
     }

@@ -12,7 +12,6 @@ public class SolverAritmetico {
         return resolver(nodo);
     }
     private Object resolver(Nodo n){
-        //TablaSimbolos tabla = new TablaSimbolos();
         // No tiene hijos, es un operando
         if(n.getHijos() == null){
             if(n.getValue().tipo == TipoToken.NUMERO || n.getValue().tipo == TipoToken.CADENA) {
