@@ -46,7 +46,14 @@ public class Arbol {
                     // Crear una variable. Usar tabla de simbolos
                     break;
                 case SI:
+                    // Nodo IZQ para la condicion
+                    // Nodo DER para la instruccion
                     break;
+                case SI_NO:
+                    break;
+                case PARA:
+                    break;
+                case MIENTRAS:
 
             }
         }
