@@ -45,8 +45,6 @@ public class GeneradorPostfija {
                 pila.push(t);
             }
             else if(t.tipo == TipoToken.PAREN_DER){
-                // se sacan los operadores de la pila pila y se agregan a la lista postfija
-                // hasta encontrar el paréntesis izquierdo
                 while(!pila.isEmpty() && pila.peek().tipo != TipoToken.PAREN_IZQ){
                     Token temp = pila.pop();
                     postfija.add(temp);
@@ -99,9 +97,10 @@ public class GeneradorPostfija {
                         estructuraDeControl = false;
                     }
                 }
+
+
             }
         }
-
         while(!pila.isEmpty()){
             Token temp = pila.pop();
             postfija.add(temp);
@@ -109,7 +108,7 @@ public class GeneradorPostfija {
 
         while(!pilaEstructurasDeControl.isEmpty()){
             pilaEstructurasDeControl.pop();
-            postfija.add(new Token(TipoToken.PUNTO_COMA, ";", null, 0 , 0));
+            postfija.add(new Token(TipoToken.PUNTO_COMA, ";", null, 0, 0));
         }
 
         return postfija;

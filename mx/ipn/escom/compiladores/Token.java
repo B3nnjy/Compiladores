@@ -75,6 +75,7 @@ public class Token {
             case MAYOR:
             case MAYOR_EQ:
             case MENOR:
+            case COMPARACION:
             case MENOR_EQ:
             case NOT_EQ:
                 return 1;

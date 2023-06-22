@@ -1,3 +1,4 @@
-si(i == 0){
+
+si (0 == 0) {
     imprimir i;
 }
