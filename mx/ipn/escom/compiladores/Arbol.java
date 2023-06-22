@@ -48,6 +48,15 @@ public class Arbol {
                 case SI:
                     // Nodo IZQ para la condicion
                     // Nodo DER para la instruccion
+                    Nodo condicion = n.getHijos().get(0);
+                    SolverAritmetico solverCondicion = new SolverAritmetico(condicion);
+                    boolean condicionCumplida = (Boolean) solverCondicion.resolver();
+
+                    if (condicionCumplida){
+                        Nodo instruccion = n.getHijos().get(1);
+                        Arbol arbolInstruccion = new Arbol(instruccion);
+                        arbolInstruccion.recorrer();
+                    }
                     break;
                 case SI_NO:
                     break;
