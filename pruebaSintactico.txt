@@ -1,6 +1,1 @@
-imprimir "Inicio";
-si (10 > 100) {
-    imprimir "Hola";
-}sino{
-    imprimir "Adios";
-}
+var a = 2-1;
