@@ -1,1 +1,10 @@
-var a = 2-1;
+imprimir "Inicio";
+var h= 4-2;
+var t = -6;
+
+imprimir ((2-4)*(6-2));
+si (-2 < 5) {
+    imprimir "Hola";
+}sino{
+    imprimir "Adios";
+}

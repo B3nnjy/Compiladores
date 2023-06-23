@@ -61,7 +61,14 @@ public class GeneradorPostfija {
                     Token temp = pila.pop();
                     postfija.add(temp);
                 }
+                if (!pila.isEmpty() && t.tipo == TipoToken.MENOS){
+                    if (infija.get(i - 1).tipo != TipoToken.NUMERO && infija.get(i - 1).tipo != TipoToken.IDENTIFICADOR){
+                        Token cero = new Token(TipoToken.NUMERO, "0", 0.0, 0, 0);
+                        postfija.add(cero);
+                    }
+                }
                 pila.push(t);
+
             }
             else if(t.tipo == TipoToken.PUNTO_COMA){
                 while(!pila.isEmpty() && pila.peek().tipo != TipoToken.LLAVE_IZQ){

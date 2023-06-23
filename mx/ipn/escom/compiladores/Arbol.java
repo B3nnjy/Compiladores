@@ -14,17 +14,6 @@ public class Arbol {
                 // Operadores aritméticos
                 case MAS:
                 case MENOS:
-                    if (n.getHijos().size()==2){
-
-                        SolverAritmetico solver = new SolverAritmetico(n);
-                        Object res = solver.resolver();
-                    }else {
-                        Nodo numero = n.getHijos().get(0);
-                        double valor = Double.parseDouble(numero.getValue().lexema);
-                        double res = -valor;
-                        System.out.println(res);
-                    }
-                        break;
                 case ASTERISCO:
                 case DIAGONAL:
                 case MENOR:
@@ -85,7 +74,6 @@ public class Arbol {
                     }
                     break;
                 case SI_NO:
-
                     Nodo auxRaiz = new Nodo(null);
                     Nodo instruccion = n.getHijos().get(0);
                     auxRaiz.insertarHijo(instruccion);
