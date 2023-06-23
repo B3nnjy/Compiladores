@@ -83,6 +83,31 @@ public class Arbol {
 
                     break;
                 case PARA:
+                    //primero hijo para inicializacion
+                    //segundo hijo para condicion
+                    //tercer hijo para incremento
+                    //cuarto hijo para instruccion
+                    Nodo auxdecla = new Nodo(null);
+                    Nodo declaracion = n.getHijos().get(0);
+                    auxdecla.insertarHijo(declaracion);
+                    Arbol arbolDeclaracion = new Arbol(auxdecla);
+                    arbolDeclaracion.recorrer();
+
+                    Nodo paracondicion = n.getHijos().get(1);
+                    SolverAritmetico solverParaCondicion = new SolverAritmetico(paracondicion);
+                    boolean condicionParaCumplida = (Boolean) solverParaCondicion.resolver();
+
+                    if(condicionParaCumplida){
+                        Nodo auxRaizPara = new Nodo(null);
+                        Nodo instruccionPara = n.getHijos().get(3);
+                        auxRaizPara.insertarHijo(instruccionPara);
+                        Arbol arbolInstruccionPara = new Arbol(auxRaizPara);
+                        arbolInstruccionPara.recorrer();
+                        //Aqui falta el incremento
+
+                    }else {
+                        break;
+                    }
                     break;
                 case MIENTRAS:
 

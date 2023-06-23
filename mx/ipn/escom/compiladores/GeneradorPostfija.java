@@ -49,7 +49,7 @@ public class GeneradorPostfija {
                     Token temp = pila.pop();
                     postfija.add(temp);
                 }
-                if(pila.peek().tipo == TipoToken.PAREN_IZQ){
+                if(!pila.isEmpty() && pila.peek().tipo == TipoToken.PAREN_IZQ){
                     pila.pop();
                 }
                 if(estructuraDeControl){

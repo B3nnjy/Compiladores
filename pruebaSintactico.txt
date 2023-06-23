@@ -1,10 +1,3 @@
-imprimir "Inicio";
-var h= 4-2;
-var t = -6;
-
-imprimir ((2-4)*(6-2));
-si (-2 < 5) {
+para(var i = 10; i >= 5; i = i - 1){
     imprimir "Hola";
-}sino{
-    imprimir "Adios";
 }
