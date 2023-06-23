@@ -64,9 +64,24 @@ public class Arbol {
 
                         Arbol arbolInstruccion = new Arbol(auxRaiz);
                         arbolInstruccion.recorrer();
+                    } else if (n.getHijos().size() == 3) {
+                        Nodo auxRaiz = new Nodo(null);
+                        Nodo instruccion = n.getHijos().get(2);
+                        auxRaiz.insertarHijo(instruccion);
+
+                        Arbol arbolInstruccion = new Arbol(auxRaiz);
+                        arbolInstruccion.recorrer();
                     }
                     break;
                 case SI_NO:
+
+                    Nodo auxRaiz = new Nodo(null);
+                    Nodo instruccion = n.getHijos().get(0);
+                    auxRaiz.insertarHijo(instruccion);
+
+                    Arbol arbolInstruccion = new Arbol(auxRaiz);
+                    arbolInstruccion.recorrer();
+
                     break;
                 case PARA:
                     break;
