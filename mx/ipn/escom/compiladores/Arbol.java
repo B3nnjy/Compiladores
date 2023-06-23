@@ -97,16 +97,17 @@ public class Arbol {
                     SolverAritmetico solverParaCondicion = new SolverAritmetico(paracondicion);
                     boolean condicionParaCumplida = (Boolean) solverParaCondicion.resolver();
 
-                    if(condicionParaCumplida){
+                    while (condicionParaCumplida) {
                         Nodo auxRaizPara = new Nodo(null);
                         Nodo instruccionPara = n.getHijos().get(3);
                         auxRaizPara.insertarHijo(instruccionPara);
                         Arbol arbolInstruccionPara = new Arbol(auxRaizPara);
                         arbolInstruccionPara.recorrer();
-                        //Aqui falta el incremento
+                        // Aquí agregar el código para el incremento
 
-                    }else {
-                        break;
+                        // Verificar la condición nuevamente en cada iteración
+                        SolverAritmetico solverCondicionwhile = new SolverAritmetico(paracondicion);
+                        condicionParaCumplida = (Boolean) solverCondicionwhile.resolver();
                     }
                     break;
                 case MIENTRAS:
