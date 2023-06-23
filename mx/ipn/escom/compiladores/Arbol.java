@@ -30,20 +30,25 @@ public class Arbol {
                     System.out.println(res);
                     break;
                 case VARIABLE:
+                    // Crear una variable. Usar tabla de simbolos
                     if (!TablaSimbolos.existeIdentificador(n.getHijos().get(0).getValue().lexema)){
                         if (n.getHijos().size() == 2){
                             Nodo derecho = n.getHijos().get(1);
-
                             SolverAritmetico solverAritmetico =  new SolverAritmetico(derecho);
                             Object res_derecho = solverAritmetico.resolver();
-
 
                             TablaSimbolos.asignar(n.getHijos().get(0).getValue().lexema, res_derecho);
                         } else{
                             TablaSimbolos.asignar(n.getHijos().get(0).getValue().lexema, null);
                         }
                     }
-                    // Crear una variable. Usar tabla de simbolos
+                    break;
+                case IMPRIMIR:
+                    Nodo hijo = n.getHijos().get(0);
+                    SolverAritmetico solver_hijo = new SolverAritmetico(hijo);
+                    Object res_hijo = solver_hijo.resolver();
+
+                    System.out.println(res_hijo);
                     break;
                 case SI:
                     // Nodo IZQ para la condicion
