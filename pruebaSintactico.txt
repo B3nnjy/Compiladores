@@ -1,4 +1,6 @@
 imprimir "Inicio";
-si (4 > 0) {
+si (10 > 100) {
     imprimir "Hola";
+}sino{
+    imprimir "Adios";
 }
