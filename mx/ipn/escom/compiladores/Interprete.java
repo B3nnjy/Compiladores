@@ -55,7 +55,7 @@ public class Interprete {
 
 
         for(Token t : tokens){
-            System.out.println(t.toString());
+            //System.out.println(t.toString());
         }
 
         if (!existenErrores){
@@ -63,7 +63,7 @@ public class Interprete {
             if (parser.parser()){
                 GeneradorPostfija postfija = new GeneradorPostfija(tokens);
                 List<Token> listaPos = postfija.convertir();
-                System.out.println(listaPos.toString());
+                //System.out.println(listaPos.toString());
                 GeneradorAST generador = new GeneradorAST(listaPos);
                 Arbol raiz = generador.generarAST();
                 raiz.recorrer();

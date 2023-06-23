@@ -58,8 +58,11 @@ public class Arbol {
                     boolean condicionCumplida = (Boolean) solverCondicion.resolver();
 
                     if (condicionCumplida){
+                        Nodo auxRaiz = new Nodo(null);
                         Nodo instruccion = n.getHijos().get(1);
-                        Arbol arbolInstruccion = new Arbol(instruccion);
+                        auxRaiz.insertarHijo(instruccion);
+
+                        Arbol arbolInstruccion = new Arbol(auxRaiz);
                         arbolInstruccion.recorrer();
                     }
                     break;
