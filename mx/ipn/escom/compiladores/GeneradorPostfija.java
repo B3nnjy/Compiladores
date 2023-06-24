@@ -95,7 +95,10 @@ public class GeneradorPostfija {
                     // El cual se extrae y se añade un ";" a cadena postfija,
                     // El cual servirá para indicar que se finaliza la estructura
                     // de control.
-                    pila.pop();
+                    if(!pila.isEmpty()){
+                        pila.pop();
+                    }
+
                     postfija.add(new Token(TipoToken.PUNTO_COMA, ";", null, 0, 0));
 
                     // Se extrae de la pila de estrucuras de control, el elemento en el tope

@@ -1,5 +1,5 @@
 var t = 1 + 2;
-
+var it = 0;
 var tanque = 0;
 
 imprimir "Variable t = " + t;
@@ -10,9 +10,26 @@ mientras(tanque < 10) {
     imprimir "tanque = " + tanque;
 
     si(t == 3){
-        imprimir "Variable t = " + t;
-        para(var i = 0; i <= 2; i = i + 1){
-            imprimir i;
+        //imprimir "Variable t = " + t;
+
+        /*si(t == 3){
+            imprimir "segundo if";
+        }*/
+
+        mientras(it < 5){
+            it = it + 1;
+            imprimir "Variable it = " + it;
+
+            para(var i = 0; i <= 2; i = i + 1){
+                si(i == 1){
+                    imprimir i + " es igual a 1";
+                }
+                imprimir i;
+            }
         }
     }
 }
+
+/*para(var i = 0; i <= 3; i = i+1){
+    imprimir i;
+}*/
