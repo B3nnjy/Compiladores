@@ -67,6 +67,12 @@ public class SolverAritmetico {
                     return ((Double)resultadoIzquierdo == (Double) resultadoDerecho);
                 case NOT_EQ:
                     return ((Double)resultadoIzquierdo != (Double) resultadoDerecho);
+                case IGUAL:
+                    // Asignar el valor de la derecha a la variable de la izquierda
+                    if (izq.getValue().tipo == TipoToken.IDENTIFICADOR){
+                        TablaSimbolos.asignar(izq.getValue().lexema, resultadoDerecho);
+                    }
+                    break;
 
             }
         }
@@ -76,10 +82,6 @@ public class SolverAritmetico {
                 return (String)resultadoIzquierdo + (String) resultadoDerecho;
             }
         }
-        else{
-            // Error por diferencia de tipos
-        }
-
         return null;
     }
 }

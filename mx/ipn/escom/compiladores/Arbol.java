@@ -103,10 +103,11 @@ public class Arbol {
                         auxRaizPara.insertarHijo(instruccionPara);
                         Arbol arbolInstruccionPara = new Arbol(auxRaizPara);
                         arbolInstruccionPara.recorrer();
-                        // Aquí agregar el código para el incremento
 
-                        // Verificar la condición nuevamente en cada iteración
-                        SolverAritmetico solverCondicionwhile = new SolverAritmetico(paracondicion);
+                        // Aquí agregar el código para el incremento
+                        Nodo incremento = n.getHijos().get(2);
+                        SolverAritmetico solverCondicionwhile = new SolverAritmetico(incremento);
+                        solverCondicionwhile.resolver();
                         condicionParaCumplida = (Boolean) solverCondicionwhile.resolver();
                     }
                     break;
