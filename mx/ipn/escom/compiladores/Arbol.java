@@ -50,16 +50,19 @@ public class Arbol {
                     boolean condicionCumplida = (Boolean) solverCondicion.resolver();
 
                     if (condicionCumplida){
+                        for (int i = 1; i < n.getHijos().size() - 1; i++){
+                            Nodo auxRaiz = new Nodo(null);
+                            Nodo instruccion = n.getHijos().get(i);
+                            auxRaiz.insertarHijo(instruccion);
+                            Arbol arbolInstruccion = new Arbol(auxRaiz);
+                            arbolInstruccion.recorrer();
+                        }
+                    } else if (n.getHijos().size() > 2) {
                         Nodo auxRaiz = new Nodo(null);
-                        Nodo instruccion = n.getHijos().get(1);
-                        auxRaiz.insertarHijo(instruccion);
-
-                        Arbol arbolInstruccion = new Arbol(auxRaiz);
-                        arbolInstruccion.recorrer();
-                    } else if (n.getHijos().size() == 3) {
-                        Nodo auxRaiz = new Nodo(null);
-                        Nodo instruccion = n.getHijos().get(2);
-                        auxRaiz.insertarHijo(instruccion);
+                        for (int i = 2; i < n.getHijos().size(); i++){
+                            Nodo instruccion = n.getHijos().get(i);
+                            auxRaiz.insertarHijo(instruccion);
+                        }
 
                         Arbol arbolInstruccion = new Arbol(auxRaiz);
                         arbolInstruccion.recorrer();
@@ -67,8 +70,10 @@ public class Arbol {
                     break;
                 case SI_NO:
                     Nodo auxRaiz = new Nodo(null);
-                    Nodo instruccion = n.getHijos().get(0);
-                    auxRaiz.insertarHijo(instruccion);
+                    for (int i = 0; i < n.getHijos().size(); i++){
+                        Nodo instruccion = n.getHijos().get(i);
+                        auxRaiz.insertarHijo(instruccion);
+                    }
 
                     Arbol arbolInstruccion = new Arbol(auxRaiz);
                     arbolInstruccion.recorrer();
