@@ -1,4 +1,5 @@
-para(var i = 1; i <= 10; i = i + 1){
-    imprimir "Hola mundo";
-    imprimir i;
+var tanque = 0;
+mientras(tanque < 10) {
+    tanque = tanque + 1;
+    imprimir tanque;
 }

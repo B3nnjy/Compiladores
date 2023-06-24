@@ -115,6 +115,22 @@ public class Arbol {
                     }
                     break;
                 case MIENTRAS:
+                    Nodo condicionwhile = n.getHijos().get(0);
+                    SolverAritmetico solverCondicionwhile = new SolverAritmetico(condicionwhile);
+                    boolean condicionCumplidawhile = (Boolean) solverCondicionwhile.resolver();
+
+                    while (condicionCumplidawhile) {
+                        for (int i = 1; i < n.getHijos().size(); i++) {
+                            Nodo auxRaizwhile = new Nodo(null);
+                            Nodo instruccionwhile = n.getHijos().get(i);
+                            auxRaizwhile.insertarHijo(instruccionwhile);
+
+                            Arbol arbolInstruccionwhile = new Arbol(auxRaizwhile);
+                            arbolInstruccionwhile.recorrer();
+                        }
+                        condicionCumplidawhile = (Boolean) solverCondicionwhile.resolver();
+                    }
+                    break;
 
             }
         }
