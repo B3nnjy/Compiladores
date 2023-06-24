@@ -1,9 +1,14 @@
 package mx.ipn.escom.compiladores;
 
 public class Arbol {
-    private final Nodo raiz;
+    private Nodo raiz;
 
     public Arbol(Nodo raiz){
+        this.raiz = raiz;
+    }
+    public Arbol(){}
+
+    public void setRaiz(Nodo raiz){
         this.raiz = raiz;
     }
 
@@ -12,22 +17,9 @@ public class Arbol {
             Token t = n.getValue();
             switch (t.tipo){
                 // Operadores aritméticos
-                case MAS:
-                case MENOS:
-                case ASTERISCO:
-                case DIAGONAL:
-                case MENOR:
-                case MENOR_EQ:
-                case MAYOR:
-                case MAYOR_EQ:
                 case IGUAL:
-                case COMPARACION:
-                case NOT_EQ:
-                case Y:
-                case O:
-                    SolverAritmetico solver = new SolverAritmetico(n);
-                    Object res = solver.resolver();
-                    System.out.println(res);
+                    SolverAritmetico solver = new SolverAritmetico();
+                    solver.resolver(n);
                     break;
                 case VARIABLE:
                     // Crear una variable. Usar tabla de simbolos
@@ -87,6 +79,10 @@ public class Arbol {
                     //segundo hijo para condicion
                     //tercer hijo para incremento
                     //cuarto hijo para instruccion
+                    SolverAritmetico solverPara = new SolverAritmetico();
+                    Arbol arbolInstruccionPara = new Arbol();
+                    Nodo auxRaizPara = new Nodo(null);
+
                     Nodo auxdecla = new Nodo(null);
                     Nodo declaracion = n.getHijos().get(0);
                     auxdecla.insertarHijo(declaracion);
@@ -94,44 +90,45 @@ public class Arbol {
                     arbolDeclaracion.recorrer();
 
                     Nodo paracondicion = n.getHijos().get(1);
-                    SolverAritmetico solverParaCondicion = new SolverAritmetico(paracondicion);
-                    boolean condicionParaCumplida = (Boolean) solverParaCondicion.resolver();
+                    //SolverAritmetico solverParaCondicion = new SolverAritmetico(paracondicion);
+                    boolean condicionParaCumplida = (Boolean) solverPara.resolver(paracondicion);
 
                     while (condicionParaCumplida) {
                         for (int i = 3; i < n.getHijos().size(); i++) {
-                            Nodo auxRaizPara = new Nodo(null);
                             Nodo instruccionPara = n.getHijos().get(i);
                             auxRaizPara.insertarHijo(instruccionPara);
 
-                            Arbol arbolInstruccionPara = new Arbol(auxRaizPara);
+                            arbolInstruccionPara.setRaiz(auxRaizPara);
                             arbolInstruccionPara.recorrer();
+                            auxRaizPara.clear();
                         }
 
                         // Aquí agregar el código para el incremento
                         Nodo incremento = n.getHijos().get(2);
-                        SolverAritmetico solverCondicionwhile = new SolverAritmetico(incremento);
-                        solverCondicionwhile.resolver();
-                        condicionParaCumplida = (Boolean) solverParaCondicion.resolver();
+                        //SolverAritmetico solverCondicionwhile = new SolverAritmetico(incremento);
+                        solverPara.resolver(incremento);
+                        condicionParaCumplida = (Boolean) solverPara.resolver(paracondicion);
                     }
                     break;
                 case MIENTRAS:
+                    SolverAritmetico solverMientras = new SolverAritmetico();
+                    Arbol arbolInstruccionwhile = new Arbol();
+                    Nodo auxRaizwhile = new Nodo(null);
                     Nodo condicionwhile = n.getHijos().get(0);
-                    SolverAritmetico solverCondicionwhile = new SolverAritmetico(condicionwhile);
-                    boolean condicionCumplidawhile = (Boolean) solverCondicionwhile.resolver();
+                    boolean condicionCumplidawhile = (Boolean) solverMientras.resolver(condicionwhile);
 
                     while (condicionCumplidawhile) {
                         for (int i = 1; i < n.getHijos().size(); i++) {
-                            Nodo auxRaizwhile = new Nodo(null);
                             Nodo instruccionwhile = n.getHijos().get(i);
                             auxRaizwhile.insertarHijo(instruccionwhile);
 
-                            Arbol arbolInstruccionwhile = new Arbol(auxRaizwhile);
+                            arbolInstruccionwhile.setRaiz(auxRaizwhile);
                             arbolInstruccionwhile.recorrer();
+                            auxRaizwhile.clear();
                         }
-                        condicionCumplidawhile = (Boolean) solverCondicionwhile.resolver();
+                        condicionCumplidawhile = (Boolean) solverMientras.resolver(condicionwhile);
                     }
                     break;
-
             }
         }
     }

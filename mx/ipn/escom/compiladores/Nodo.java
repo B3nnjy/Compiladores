@@ -45,6 +45,10 @@ public class Nodo {
         return value;
     }
 
+    public void clear(){
+        hijos = new ArrayList<>();
+    }
+
     public List<Nodo> getHijos(){
         return hijos;
     }

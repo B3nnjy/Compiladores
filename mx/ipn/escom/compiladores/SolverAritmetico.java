@@ -2,16 +2,17 @@ package mx.ipn.escom.compiladores;
 
 public class SolverAritmetico {
 
-    private final Nodo nodo;
+    private Nodo nodo;
 
     public SolverAritmetico(Nodo nodo) {
         this.nodo = nodo;
     }
+    public SolverAritmetico(){}
 
     public Object resolver(){
         return resolver(nodo);
     }
-    private Object resolver(Nodo n){
+    public Object resolver(Nodo n){
         // No tiene hijos, es un operando
         if(n.getHijos() == null){
             if(n.getValue().tipo == TipoToken.NUMERO || n.getValue().tipo == TipoToken.CADENA) {
@@ -21,6 +22,9 @@ public class SolverAritmetico {
                 // Ver la tabla de símbolos
                 if(TablaSimbolos.existeIdentificador(n.getValue().lexema)){
                     return TablaSimbolos.obtener(n.getValue().lexema);
+                }else {
+                    System.err.println("Error!! : Variable " +  n.getValue().lexema + " no definida ");
+                    System.exit(1);
                 }
             } else if (n.getValue().tipo == TipoToken.FALSO) {
                 return false;
@@ -64,9 +68,9 @@ public class SolverAritmetico {
                 case MAYOR_EQ:
                     return ((Double)resultadoIzquierdo >= (Double) resultadoDerecho);
                 case COMPARACION:
-                    return ((Double)resultadoIzquierdo == (Double) resultadoDerecho);
+                    return (((Double) resultadoIzquierdo).equals((Double) resultadoDerecho));
                 case NOT_EQ:
-                    return ((Double)resultadoIzquierdo != (Double) resultadoDerecho);
+                    return (!((Double) resultadoIzquierdo).equals((Double) resultadoDerecho));
                 case IGUAL:
                     // Asignar el valor de la derecha a la variable de la izquierda
                     if (izq.getValue().tipo == TipoToken.IDENTIFICADOR){
@@ -76,11 +80,26 @@ public class SolverAritmetico {
 
             }
         }
-        else if(resultadoIzquierdo instanceof String && resultadoDerecho instanceof String){
-            if (n.getValue().tipo == TipoToken.MAS){
-                // Ejecutar la concatenación
-                return (String)resultadoIzquierdo + (String) resultadoDerecho;
+        else if(resultadoIzquierdo instanceof String || resultadoDerecho instanceof String){
+            String valor;
+
+            if (! (n.getValue().tipo == TipoToken.MAS)){
+                return null;
             }
+
+            // Ejecutar la concatenación
+
+            if (!(resultadoDerecho instanceof String)){
+                valor = resultadoDerecho.toString();
+                return resultadoIzquierdo + valor;
+            }
+
+            if (!(resultadoIzquierdo instanceof String)){
+                valor = resultadoIzquierdo.toString();
+                return valor + resultadoDerecho;
+            }
+
+            return (String) resultadoIzquierdo + resultadoDerecho;
         }
         return null;
     }
