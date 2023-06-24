@@ -45,6 +45,11 @@ public class Arbol {
                 case SI:
                     // Nodo IZQ para la condicion
                     // Nodo DER para la instruccion
+                    if (n.getHijos().size() == 1 || n.getHijos().get(1).getValue().tipo == TipoToken.SI_NO){
+                        System.err.println("Error : Falta instruccion dentro del si");
+                        System.exit(1);
+                    }
+
                     Nodo condicion = n.getHijos().get(0);
                     SolverAritmetico solverCondicion = new SolverAritmetico(condicion);
                     boolean condicionCumplida = (Boolean) solverCondicion.resolver();
@@ -61,30 +66,37 @@ public class Arbol {
                         Nodo auxRaiz = new Nodo(null);
                         Nodo sino = n.getHijos().get(n.getHijos().size() - 1);
 
-                        for (int i = 0; i < sino.getHijos().size(); i++){
-                            Nodo instruccion = sino.getHijos().get(i);
-                            auxRaiz.insertarHijo(instruccion);
-                        }
+                        auxRaiz.insertarHijo(sino);
 
                         Arbol arbolInstruccion = new Arbol(auxRaiz);
                         arbolInstruccion.recorrer();
                     }
                     break;
                 case SI_NO:
+                    if (n.getHijos() == null){
+                        System.err.println("Error : Falta instruccion dentro del sino");
+                        System.exit(1);
+                    }
+                    Arbol arbolElseInstr = new Arbol();
                     Nodo auxRaiz = new Nodo(null);
+
                     for (int i = 0; i < n.getHijos().size(); i++){
                         Nodo instruccion = n.getHijos().get(i);
                         auxRaiz.insertarHijo(instruccion);
+                        arbolElseInstr.setRaiz(auxRaiz);
+                        arbolElseInstr.recorrer();
+                        auxRaiz.clear();
                     }
-
-                    Arbol arbolInstruccion = new Arbol(auxRaiz);
-                    arbolInstruccion.recorrer();
                     break;
                 case PARA:
                     //primero hijo para inicializacion
                     //segundo hijo para condicion
                     //tercer hijo para incremento
                     //cuarto hijo para instruccion
+                    if (n.getHijos().size() == 3){
+                        System.err.println("Error : Falta instruccion dentro del para");
+                        System.exit(1);
+                    }
                     SolverAritmetico solverPara = new SolverAritmetico();
                     Arbol arbolInstruccionPara = new Arbol();
                     Nodo auxRaizPara = new Nodo(null);
@@ -117,6 +129,10 @@ public class Arbol {
                     }
                     break;
                 case MIENTRAS:
+                    if (n.getHijos().size() == 1){
+                        System.err.println("Error : Falta instruccion dentro del mientras");
+                        System.exit(1);
+                    }
                     SolverAritmetico solverMientras = new SolverAritmetico();
                     Arbol arbolInstruccionwhile = new Arbol();
                     Nodo auxRaizwhile = new Nodo(null);
