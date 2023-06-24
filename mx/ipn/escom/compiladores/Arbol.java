@@ -108,7 +108,7 @@ public class Arbol {
                         Nodo incremento = n.getHijos().get(2);
                         SolverAritmetico solverCondicionwhile = new SolverAritmetico(incremento);
                         solverCondicionwhile.resolver();
-                        condicionParaCumplida = (Boolean) solverCondicionwhile.resolver();
+                        condicionParaCumplida = (Boolean) solverParaCondicion.resolver();
                     }
                     break;
                 case MIENTRAS:
