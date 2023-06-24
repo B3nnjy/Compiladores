@@ -57,10 +57,12 @@ public class Arbol {
                             Arbol arbolInstruccion = new Arbol(auxRaiz);
                             arbolInstruccion.recorrer();
                         }
-                    } else if (n.getHijos().size() > 2) {
+                    } else if (n.getHijos().get(n.getHijos().size() - 1).getValue().tipo == TipoToken.SI_NO) {
                         Nodo auxRaiz = new Nodo(null);
-                        for (int i = 2; i < n.getHijos().size(); i++){
-                            Nodo instruccion = n.getHijos().get(i);
+                        Nodo sino = n.getHijos().get(n.getHijos().size() - 1);
+
+                        for (int i = 0; i < sino.getHijos().size(); i++){
+                            Nodo instruccion = sino.getHijos().get(i);
                             auxRaiz.insertarHijo(instruccion);
                         }
 
@@ -77,7 +79,6 @@ public class Arbol {
 
                     Arbol arbolInstruccion = new Arbol(auxRaiz);
                     arbolInstruccion.recorrer();
-
                     break;
                 case PARA:
                     //primero hijo para inicializacion
