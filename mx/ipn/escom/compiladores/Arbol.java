@@ -98,11 +98,14 @@ public class Arbol {
                     boolean condicionParaCumplida = (Boolean) solverParaCondicion.resolver();
 
                     while (condicionParaCumplida) {
-                        Nodo auxRaizPara = new Nodo(null);
-                        Nodo instruccionPara = n.getHijos().get(3);
-                        auxRaizPara.insertarHijo(instruccionPara);
-                        Arbol arbolInstruccionPara = new Arbol(auxRaizPara);
-                        arbolInstruccionPara.recorrer();
+                        for (int i = 3; i < n.getHijos().size(); i++) {
+                            Nodo auxRaizPara = new Nodo(null);
+                            Nodo instruccionPara = n.getHijos().get(i);
+                            auxRaizPara.insertarHijo(instruccionPara);
+
+                            Arbol arbolInstruccionPara = new Arbol(auxRaizPara);
+                            arbolInstruccionPara.recorrer();
+                        }
 
                         // Aquí agregar el código para el incremento
                         Nodo incremento = n.getHijos().get(2);
